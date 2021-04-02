@@ -13,32 +13,32 @@ class GlobalApplication : Application() {
     companion object {
         val BASE_URL = "http://211.254.212.85:8080/"
 
-    private var retrofit: Retrofit? = null
+        private var retrofit: Retrofit? = null
 
-    @JvmName("getRetrofit")
-    fun getRetrofit(): Retrofit? {
+        @JvmName("getRetrofit")
+        fun getRetrofit(): Retrofit? {
 
-        if (retrofit == null) {
-            val loggingInterceptor = HttpLoggingInterceptor()
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            if (retrofit == null) {
+                val loggingInterceptor = HttpLoggingInterceptor()
+                loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-            val gson = GsonBuilder()
-                .setLenient()
-                .create()
-            val client = OkHttpClient.Builder()
-                .readTimeout(10000, TimeUnit.MILLISECONDS)
-                .connectTimeout(10000, TimeUnit.MILLISECONDS)
-                .writeTimeout(10000, TimeUnit.MILLISECONDS)
-                .addInterceptor(loggingInterceptor) //for test
-                .build()
+                val gson = GsonBuilder()
+                    .setLenient()
+                    .create()
+                val client = OkHttpClient.Builder()
+                    .readTimeout(10000, TimeUnit.MILLISECONDS)
+                    .connectTimeout(10000, TimeUnit.MILLISECONDS)
+                    .writeTimeout(10000, TimeUnit.MILLISECONDS)
+                    .addInterceptor(loggingInterceptor) //for test
+                    .build()
 
-            retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
+                retrofit = Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build()
+            }
+            return retrofit
         }
-        return retrofit
-    }
     }
 }
