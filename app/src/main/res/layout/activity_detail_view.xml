@@ -4,37 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailView.DetailViewActivity">
+    tools:context=".detailview.DetailViewActivity">
 
-    <TextView
-        android:id="@+id/car_name"
+    <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="포드 Explorer"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/id_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:text="15."
+            android:textColor="#333333"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/RAQ_BRAND_NM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="포드"
+            android:textColor="#333333"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/RAQ_CAR_NM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="Explolrer"
+            android:textColor="#333333"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/nickname"
+        android:id="@+id/car_NICK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="고객 별명 : 헤미온"
+        android:text="고객 별명 : "
+        android:textColor="#333333"
+        android:textSize="13sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_name" />
+        app:layout_constraintTop_toBottomOf="@+id/linear1" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/MEM_NICK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1.5dp"
+        android:layout_marginTop="12dp"
+        android:textColor="#333333"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@id/car_NICK"
+        app:layout_constraintTop_toBottomOf="@+id/linear1" />
+
+    <TextView
+        android:id="@+id/car_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="연식 : 2016년식"
+        android:layout_marginTop="12dp"
+        android:text="연식"
+        android:textSize="13sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+        app:layout_constraintTop_toBottomOf="@id/car_NICK" />
+
+    <TextView
+        android:id="@+id/RAQ_YEARS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#333333"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/MEM_NICK" />
+
 
     <TextView
         android:id="@+id/car_distance"
@@ -42,39 +104,102 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="주행거리 : 1,500km"
+        android:text="주행거리"
+        android:textSize="13sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/car_year" />
 
     <TextView
-        android:id="@+id/location"
+        android:id="@+id/RAQ_DISTANCE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="지역 : 서울 강서"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_distance" />
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#333333"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_year" />
+
 
     <TextView
-        android:id="@+id/repair_text"
+        android:id="@+id/car_area"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="지역"
+        android:textSize="13sp"
+        app:layout_constrainedWidth="true"
+        android:textStyle="normal"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RAQ_AREA"
+        app:layout_constraintTop_toBottomOf="@id/car_distance" />
+
+    <TextView
+        android:id="@+id/RAQ_AREA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#333333"
+        android:gravity="end"
+        tools:text="서울특별시 종로구 서울특별시 종로구"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@+id/car_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RAQ_DISTANCE" />
+
+    <TextView
+        android:id="@+id/car_REPAIR_TYPE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="정비내용 : 타이어 교체시기 확인 및 ~~"
+        android:text="정비내용"
+        android:textSize="13sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location" />
+        app:layout_constraintTop_toBottomOf="@id/car_area" />
 
     <TextView
-        android:id="@+id/insurance"
-        android:layout_width="139dp"
-        android:layout_height="24dp"
+        android:id="@+id/RAQ_REPAIR_TYPE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:textColor="#333333"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/car_REPAIR_TYPE" />
+
+    <TextView
+        android:id="@+id/car_INSURE_TYPE_NM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="보험수리 : 자차 보험수리"
+        android:text="보험수리"
+        android:textSize="13sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repair_text" />
+        app:layout_constraintTop_toBottomOf="@+id/RAQ_REPAIR_TYPE" />
+
+    <TextView
+        android:id="@+id/RAQ_INSURE_TYPE_NM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#333333"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RAQ_REPAIR_TYPE" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

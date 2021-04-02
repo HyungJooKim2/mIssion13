@@ -1,4 +1,4 @@
-package com.hellobiz.mission1.Store_computerization.model
+package com.hellobiz.mission1.store_computerization.model
 
 import com.google.gson.annotations.SerializedName
 
