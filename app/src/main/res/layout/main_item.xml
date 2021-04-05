@@ -26,12 +26,23 @@
                 />
 
             <TextView
-                android:id="@+id/mcr_brand_nm"
+                android:id="@+id/dal_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mcr_img1"
+                tools:text="01"
+                android:textColor="@color/title"/>
+
+            <TextView
+                android:id="@+id/mcr_brand_nm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintStart_toEndOf="@id/dal_id"
                 app:layout_constraintTop_toBottomOf="@id/mcr_img1"
                 tools:text="현대"
                 android:textColor="@color/title"
@@ -42,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 app:layout_constraintStart_toEndOf="@id/mcr_brand_nm"
                 app:layout_constraintTop_toBottomOf="@+id/mcr_img1"
                 tools:text="봉고"
@@ -54,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 app:layout_constraintStart_toEndOf="@+id/mcr_model_nm"
                 app:layout_constraintTop_toBottomOf="@id/mcr_img1"
                 tools:text="카고"
@@ -67,7 +78,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/mcr_lcd_nm"
                 app:layout_constraintTop_toBottomOf="@id/mcr_img1"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginLeft="4dp"
                 tools:text="6톤"
                 android:textColor="@color/title"
@@ -93,8 +104,18 @@
                 android:textColor="@color/description"
                 app:layout_constraintStart_toEndOf="@id/mcr_addr1_nm"
                 app:layout_constraintTop_toBottomOf="@id/mcr_brand_nm"
-                app:layout_constraintEnd_toStartOf="@+id/mcr_km"
-                tools:text="강남구asfasdfdsafasdfdsafdasfdsafdsafdsafsafdasfdsaasfd" />
+                tools:text="강남구" />
+
+            <TextView
+                android:id="@+id/bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:textSize="17sp"
+                app:layout_constraintStart_toEndOf="@+id/mcr_addr2_nm"
+                app:layout_constraintTop_toBottomOf="@id/mcr_brand_nm"/>
 
             <TextView
                 android:id="@+id/mcr_km"
@@ -103,10 +124,10 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="3dp"
                 android:textColor="@color/description"
-                app:layout_constraintStart_toEndOf="@id/mcr_addr2_nm"
+                app:layout_constraintStart_toEndOf="@id/bar"
                 app:layout_constraintTop_toBottomOf="@id/mcr_brand_nm"
                 app:layout_constraintEnd_toStartOf="@+id/mcr_price"
-                tools:text="9000kmafadsfdsafdasfasdfdasfsafadsfadsfasdfsdafasfsadfdsafadsafas" />
+                tools:text="9000km" />
 
             <TextView
                 android:id="@+id/mcr_price"
@@ -114,11 +135,13 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/price"
                 android:textSize="18sp"
+                android:layout_marginRight="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/mcr_km"
                 app:layout_constraintTop_toBottomOf="@+id/mcr_brand_nm"
                 tools:text="4380만원" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
 
