@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hellobiz.mission1">
+    package="com.hellobiz.mission">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,17 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.hellobiz.mission2.mainview.LifeCycleTest">
-        </activity>
-        <activity android:name="com.hellobiz.mission2.mainview.TruckActivity">
+        <activity android:name=".mission2.myvehicleforsale.MyVehicleAcitivty"></activity>
+        <activity android:name=".mission2.testpackage.TestActivity"></activity>
+        <activity android:name=".mission2.mainview.TruckActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".detailview.DetailViewActivity" />
-        <activity android:name=".store_computerization.MainActivity"></activity>
+        <activity android:name=".mission1.detailview.DetailViewActivity" />
+        <activity android:name=".store_computerization.MainActivity" />
     </application>
 
 </manifest>
