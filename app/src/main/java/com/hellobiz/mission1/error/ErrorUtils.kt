@@ -1,7 +1,7 @@
-package com.hellobiz.mission1.Store_computerization.error
+package com.hellobiz.mission1.error
 
 import com.google.gson.Gson
-import com.hellobiz.mission1.Store_computerization.error.model.ErrorRespose
+import com.hellobiz.mission1.error.model.ErrorRespose
 import okhttp3.ResponseBody
 
 object ErrorUtils {

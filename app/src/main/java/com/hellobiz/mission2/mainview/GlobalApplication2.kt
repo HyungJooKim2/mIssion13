@@ -1,6 +1,7 @@
-package com.hellobiz.mission1
+package com.hellobiz.mission2.mainview
 
 import android.app.Application
+import android.util.Log
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,9 +9,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class GlobalApplication : Application() {
+class GlobalApplication2 : Application() {
     companion object {
-        val BASE_URL = "http://211.254.212.85:8080/"
+        val BASE_URL = "http://15.165.252.49:9090/"
 
         private var retrofit: Retrofit? = null
 

@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="85dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,18 +18,38 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/REQ_NAME"
+
+            <LinearLayout
+                android:id="@+id/Linear1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Titel"
-                android:textColor="#333333"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/Index"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 "
+                    android:textColor="#333333"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/REQ_NAME"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Titel"
+                    android:textColor="#333333"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                    />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -37,13 +58,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/REQ_NAME">
+                app:layout_constraintTop_toBottomOf="@id/Linear1">
 
                 <TextView
                     android:id="@+id/MEM_NICK"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MEM_NICK"
+                    tools:text="MEM_NICK"
                     android:textSize="13sp"
                     android:textStyle="normal"
                     />
@@ -58,7 +79,7 @@
                     android:id="@+id/AREA_NM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AREA_NM"
+                    tools:text="AREA_NM"
                     android:textSize="13sp"
                     android:textStyle="normal"
                     />

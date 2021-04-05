@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".store_computerization.MainActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/store_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context="com.hellobiz.mission2.mainview.LifeCycleTest">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
