@@ -10,25 +10,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hellobiz.mission1.R
+import com.hellobiz.mission1.databinding.MainItem2Binding
 import com.hellobiz.mission1.databinding.MainItemBinding
 import com.hellobiz.mission2.mainview.model.MainViewResponse
 import java.text.DecimalFormat
 
-class TruckAdapter():RecyclerView.Adapter<TruckAdapter.TruckViewHolder>() {
-    private var mList: ArrayList<MainViewResponse>? = null
-    private var context: Context? = null
+class TruckAdapter(
+    mContext: Context?, mTruckList: ArrayList<MainViewResponse>
+):RecyclerView.Adapter<TruckAdapter.TruckViewHolder>() {
+    private var mList: ArrayList<MainViewResponse> = mTruckList
+    private var context: Context? = mContext
 
+/*
     constructor(context: Context?, Trucks: ArrayList<MainViewResponse>) : this() {
         //엑티비티에서 넘어온 Trucks를 Adapter의 mList에 대입
         mList = Trucks
         this.context = context
     }
+*/
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): TruckViewHolder {
-        val binding = MainItemBinding.inflate(
+        val binding = MainItem2Binding.inflate(
             LayoutInflater.from(context), parent, false
         )
         return TruckViewHolder(binding)
@@ -40,23 +45,24 @@ class TruckAdapter():RecyclerView.Adapter<TruckAdapter.TruckViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return mList!!.size
+            return mList!!.size
+
     }
 
-    class TruckViewHolder(val binding: MainItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class TruckViewHolder(val binding: MainItem2Binding) : RecyclerView.ViewHolder(binding.root) {
         //MainViewResponse 자료형의 데이터를 넣으면 그 데이터로 imageview 또는 textview 출력
         @SuppressLint("SetTextI18n")
         fun bind(truck: MainViewResponse){
-            setImageUrl(binding.mcrImg1, truck.mcrImg1)                     //setImageUrl 매소드를 통해 이미지를 대입
-            binding.dalId.text = truck.mcrId.toString()                     //차량 ID
-            binding.mcrBrandNm.text = truck.mcrBrandNm                      //차량 브랜드
-            binding.mcrModelNm.text = truck.mcrModelNm                      //차량 모델
-            binding.mcrLcdNm.text = truck.mcrLcdNm                          //차량 종류
-            binding.mcrTon.text = truck.mcrTon.toString()+"톤"              //차량 무게(ton)
-            binding.mcrAddr1Nm.text = truck.mcrAddr1Nm                      //위치(시)
-            binding.mcrAddr2Nm.text = truck.mcrAddr2Nm                      //위치(구)
-            binding.mcrKm.text = setDecimalFormat(truck.mcrKm)+"km"         //타코데이터(km)
-            binding.mcrPrice.text = setDecimalFormat(truck.mcrPrice)+"만원" //차량 가격(만원)
+            //setImageUrl 매소드를 통해 이미지를 대입
+            setImageUrl(binding.mcrImg1, truck.mcrImg1)
+            //차량 ID, 차량 브랜드, 차량 모델, 차량 종류, 차량 무게(ton)
+            binding.titleText.text = truck.mcrId.toString() + truck.mcrBrandNm + truck.mcrModelNm + truck.mcrLcdNm + truck.mcrTon.toString()+ "톤"
+            //위치(시),위치(구)
+            binding.descriptionLocationText.text = truck.mcrAddr1Nm + truck.mcrAddr2Nm
+            //타코데이터(km)
+            binding.mcrKm.text = setDecimalFormat(truck.mcrKm)+"km"
+            //차량 가격(만원)
+            binding.mcrPrice.text = setDecimalFormat(truck.mcrPrice)+"만원"
         }
 
         //숫자에 3자리마다 콤마를 표시

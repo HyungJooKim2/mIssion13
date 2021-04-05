@@ -1,4 +1,4 @@
-package com.hellobiz.mission2.mainview.Interface
+package com.hellobiz.mission2.mainview.maininterface
 
 
 import com.hellobiz.mission2.mainview.model.MainViewModel
