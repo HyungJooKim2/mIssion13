@@ -14,14 +14,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name="com.hellobiz.mission2.mainview.LifeCycleTest">
+        </activity>
+        <activity android:name="com.hellobiz.mission2.mainview.TruckActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.hellobiz.mission2.mainview.TruckActivity">
-
         </activity>
         <activity android:name=".detailview.DetailViewActivity" />
         <activity android:name=".store_computerization.MainActivity"></activity>

@@ -2,8 +2,8 @@ package com.hellobiz.mission2.mainview.service
 
 import com.hellobiz.mission1.error.ErrorUtils
 import com.hellobiz.mission2.mainview.GlobalApplication2
-import com.hellobiz.mission2.mainview.Interface.MainView
-import com.hellobiz.mission2.mainview.Interface.MainViewRetrofitInterface
+import com.hellobiz.mission2.mainview.maininterface.MainView
+import com.hellobiz.mission2.mainview.maininterface.MainViewRetrofitInterface
 import com.hellobiz.mission2.mainview.model.MainViewModel
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -29,15 +29,15 @@ class MainViewService(mainView: MainView) {
                 val mainViewModel : MainViewModel? = response.body()
                 val error : ResponseBody? = response.errorBody()
                 if(mainViewModel == null){
-                    if(error != null) mMainView.MainViewError(ErrorUtils.paresError(error))
-                    else mMainView.MainViewFailure(null)
+                    if(error != null) mMainView.mainViewError(ErrorUtils.paresError(error))
+                    else mMainView.mainViewFailure(null)
                     return
                 }
-                mMainView.MainViewSuccess(mainViewModel)
+                mMainView.mainViewSuccess(mainViewModel)
             }
 
             override fun onFailure(call: Call<MainViewModel>, t: Throwable) {
-                mMainView.MainViewFailure(t)
+                mMainView.mainViewFailure(t)
             }
         })
     }
