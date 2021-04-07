@@ -25,15 +25,18 @@ import com.hellobiz.mission.BuildConfig
 import com.hellobiz.mission.R
 import com.hellobiz.mission.databinding.ActivityDistributionSignUpBinding
 import com.hellobiz.mission.error.model.ErrorRespose
+import com.hellobiz.mission.mission3.signup.model.ModificationModel
 import com.hellobiz.mission.mission3.signup.model.SignUpModel
+import com.hellobiz.mission.mission3.signup.service.ModificationService
 import com.hellobiz.mission.mission3.signup.service.SignUpService
+import com.hellobiz.mission.mission3.signup.signupinterface.EmployeeModification
 import com.hellobiz.mission.mission3.signup.signupinterface.SignUp
 import okio.ByteString.Companion.toByteString
 import java.io.File
 import java.lang.Exception
 
 
-class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener, SignUp {
+class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,EmployeeModification {
     private var mBinding: ActivityDistributionSignUpBinding? = null
     private val binding get() = mBinding!!
     private val PICK_FROM_ALBUM = 1 //onActivityResult 에서 requestCode 로 반환되는 값
@@ -316,36 +319,30 @@ class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener, Si
     }
 
     private fun getSignUpService() {
-        val patchSignUpService = SignUpService(this)
-        patchSignUpService.getSignUpService(
-            31,
+        val patchSignUpService = ModificationService(this)
+        patchSignUpService.getModificationService(
+            2,
             binding.signupName.text.toString(),
             binding.signupPhonenumber.text.toString(),
-            binding.signupPw.text.toString(),
-            binding.signupEmail.text.toString()
+            binding.signupEmail.text.toString(),
+            binding.signupPw.text.toString()
         )
     }
 
-
-    override fun signUpSuccess(signUpModel: SignUpModel?) {
-        when (signUpModel?.code) {
-            200 -> {
-                Toast.makeText(applicationContext, "Patch성공", Toast.LENGTH_SHORT).show()
+    override fun modificationSuccess(modificationModel: ModificationModel?) {
+            when(modificationModel?.code){
+                200->{
+                    Toast.makeText(applicationContext,"패치성공",Toast.LENGTH_SHORT).show()
+                }
             }
-        }
     }
 
-    override fun signUpError(errorResponse: ErrorRespose) {
-        when(errorResponse.status){
-            500 ->{
-                Toast.makeText(applicationContext,errorResponse.message,Toast.LENGTH_SHORT).show()
-            }
-        }
+    override fun modificationError(errorResponse: ErrorRespose) {
+
     }
 
-    override fun signUpFailure(message: Throwable?) {
-        Toast.makeText(applicationContext, message.toString(), Toast.LENGTH_SHORT).show()
-    }
+    override fun modificationFailure(message: Throwable?) {
 
+    }
 }
 
