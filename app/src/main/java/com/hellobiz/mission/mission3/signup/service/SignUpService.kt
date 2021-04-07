@@ -29,11 +29,11 @@ class SignUpService (signUp : SignUp){
             {
                 val signUpModel : SignUpModel? = response.body()
                 val error : ResponseBody? = response.errorBody()
-//                if(signUpModel == null){
-//                    if(error != null) mSignUp.signUpError(ErrorUtils.paresError(error))
-//                    else mSignUp.signUpFailure(null)
-//                    return
-//                }
+                if(signUpModel == null){
+                    if(error != null) mSignUp.signUpError(ErrorUtils.paresError(error))
+                    else mSignUp.signUpFailure(null)
+                    return
+                }
                 mSignUp.signUpSuccess(signUpModel)
             }
 

@@ -1,5 +1,6 @@
 package com.hellobiz.mission.serviceinterface
 
+import com.hellobiz.mission.mission3.signup.model.ModificationModel
 import com.hellobiz.mission.mission3.signup.model.SignUpModel
 import com.hellobiz.mission2.mainview.model.MainViewModel
 import retrofit2.Call
@@ -30,5 +31,27 @@ interface Services {
         @Field("MEM_PASS") memPass: String,
         @Field("MEM_EMAIL") memEmail: String
     ): Call<SignUpModel>
+
+
+    /**
+    직원 정보를 수정하는 api
+    @params SFF_ID : get api를 통해 받아온 id값
+    @params SFF_NM :
+    @params SFF_ID : ge
+    @params SFF_ID : get api를 통해 받아온 id값
+    @params SFF_ID : get api를 통해 받아온 id값
+    @return 단순 응답 바디를 반환값으로 받는 Call
+     **/
+
+    @FormUrlEncoded
+    @PATCH("api/employee/ModifyEmployeeInfo")
+    fun getModificationData(
+        @Field("SFF_ID") sffId: Int,
+        @Field("SFF_NM") sffNm: String,
+        @Field("SRS_TEL") srsTel: String,
+        @Field("SFF_USR_ID") sffUserId : String,
+        @Field("SFF_PASS") sffPass: String
+    ): Call<ModificationModel>
+
 }
 
