@@ -27,7 +27,7 @@ class DetailViewActivity : AppCompatActivity(), DetailView {
     }
 
     @SuppressLint("SetTextI18n")
-    override fun DetailSuccess(myDetailModel: MyDetailModel) {
+    override fun detailSuccess(myDetailModel: MyDetailModel) {
         when (myDetailModel.code) {
             200 -> {
                 try {
@@ -47,11 +47,11 @@ class DetailViewActivity : AppCompatActivity(), DetailView {
             else -> Toast.makeText(this, myDetailModel.message, Toast.LENGTH_SHORT).show()
         }
     }
-        override fun DetailError(errorResponse: ErrorRespose) {
+        override fun detailError(errorResponse: ErrorRespose) {
             //When을 활용해서 마찬가지로 status에 따라 처리
         }
 
-        override fun DetailFailure(message: Throwable?) {
+        override fun detailFailure(message: Throwable?) {
             Toast.makeText(this,message.toString(),Toast.LENGTH_SHORT).show()
         }
 

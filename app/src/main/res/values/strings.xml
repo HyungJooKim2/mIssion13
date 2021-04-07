@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">mIssion1</string>
+    <string name="sell_my_car">내 차 팔기</string>
+    <string name="license_plate">영업용 번호판</string>
+    <string name="chatting">채팅</string>
+    <string name="magazine">매거진</string>
+    <string name="setting">설정</string>
+    <string name="mycarforsale">내 차량 매물</string>
+    <string name="wholesale">전체 매물</string>
+    <string name="pleaseInputEmail">이메일을 입력해주세요</string>
+    <string name="pleaseInputCorrectEmail">올바른 이메일을 입력해주세요</string>
+    <string name="pleaseInputPw">비밀번호를 입력해주세요</string>
+    <string name="pleaseEnterCorrectPw">비밀번호가 올바르지 않습니다.</string>
+    <string name="pleaseInputConfirmPw">확인비밀번호를 입력해주세요</string>
+    <string name="passwordsEnteredAreIncorrect">입력된 두 비밀번호가 틀립니다</string>
+    <string name="pleaseInputName">이름을 입력해주세요</string>
+    <string name="pleaseInputCorrectName">올바른 이름을 입력해주세요</string>
+    <string name="pleaseInputDigits">전화번호를 입력해주세요</string>
+    <string name="pleaseInputCorrectDigits">올바른 전화번호를 입력해주세요</string>
+    <!-- Ted Permission -->
+    <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>
+    <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>
+    <string name="permission_success">권한 요청에 성공 하였습니다.</string>
+    <string name="permission_failed">권한 요청에 실패 하였습니다.</string>
+    <string name="email">이메일</string>
+    <string name="pwatleast10">비밀번호 : 영문+숫자 8자 이상 특수문자 1 포함</string>
+    <string name="confirm_pw">비밀번호 확인</string>
+    <string name="name">담당자 성명 : 한글 또는 영문</string>
+    <string name="digits">전화번호</string>
+    <string name="success">성공</string>
 </resources>

@@ -15,6 +15,6 @@ interface DetailRetrofitInterface {
      @return 단순 응답 바디를 반환값으로 받는 Call
      **/
 @GET("api/repair/GetEatimationRepair?")
-fun GetDetailData(@Query("RAQ_ID") ID:Int?) : Call<MyDetailModel?>?
+fun getDetailData(@Query("RAQ_ID") id:Int?) : Call<MyDetailModel?>?
 
 }

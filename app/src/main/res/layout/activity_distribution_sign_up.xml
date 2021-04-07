@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hellobiz.mission.mission3.signup.DistributionSignUpActivity">
+
+    <FrameLayout
+        android:id="@+id/signup_layout"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="50dp"
+            >
+
+        <ImageView
+            android:id="@+id/signup_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+        />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="end|bottom"
+            app:cardCornerRadius="50dp"
+            android:backgroundTint="#7BCD7E"
+            >
+        <ImageView
+            android:id="@+id/signup_find_imageview"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_find_image"
+            android:visibility="visible"
+            android:layout_gravity="center"
+            />
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/signup_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:textSize="15sp"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_layout" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/signup_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pwatleast10"
+        android:textSize="15sp"
+        android:inputType="textPassword"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_email" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/confirm_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confirm_pw"
+        android:textSize="15sp"
+        android:inputType="textPassword"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_pw" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/signup_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:textSize="15sp"
+        android:inputType="text"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirm_pw" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/signup_phonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/digits"
+        android:textSize="15sp"
+        android:maxLength="11"
+        android:inputType="phone"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signup_name" />
+
+    <Button
+        android:id="@+id/signup_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white92_box"
+        android:backgroundTint="#7BCD7E"
+        android:text="회원가입"
+        android:textColor="#ffffff"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

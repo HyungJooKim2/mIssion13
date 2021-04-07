@@ -24,7 +24,7 @@ class DetailService(detailView: DetailView) {
         enqueue()를 사용하여 서버와 통신했을때 콜백을 작성,
         Error가 나지 않을 경우 Success 함수를 호출, response.body()를 넘겨줌
         */
-        detailRetrofitInterface.GetDetailData(id)?.enqueue(object : Callback<MyDetailModel?> {
+        detailRetrofitInterface.getDetailData(id)?.enqueue(object : Callback<MyDetailModel?> {
 
             override fun onResponse(
                 call: Call<MyDetailModel?>,
@@ -33,15 +33,15 @@ class DetailService(detailView: DetailView) {
                 val MyDetailModel: MyDetailModel? = response.body()
                 val error: ResponseBody? = response.errorBody()
                 if (MyDetailModel == null) {
-                    if (error != null) mDetailView.DetailError(ErrorUtils.paresError(error))
-                    else mDetailView.DetailFailure(null)
+                    if (error != null) mDetailView.detailError(ErrorUtils.paresError(error))
+                    else mDetailView.detailFailure(null)
                     return
                 }
-                mDetailView.DetailSuccess(MyDetailModel)
+                mDetailView.detailSuccess(MyDetailModel)
             }
 
             override fun onFailure(call: Call<MyDetailModel?>, t: Throwable) {
-                mDetailView.DetailFailure(t)
+                mDetailView.detailFailure(t)
             }
         }
         )

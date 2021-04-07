@@ -54,9 +54,9 @@ class TruckAdapter(
             //setImageUrl 매소드를 통해 이미지를 대입
             setImageUrl(binding.mcrImg1, truck.mcrImg1)
             //차량 ID, 차량 브랜드, 차량 모델, 차량 종류, 차량 무게(ton)
-            binding.titleText.text = truck.mcrId.toString() + truck.mcrBrandNm + truck.mcrModelNm + truck.mcrLcdNm + truck.mcrTon.toString()+ "톤"
+            binding.titleText.text = truck.mcrId.toString() + " " + truck.mcrBrandNm + " " + truck.mcrModelNm + " " + truck.mcrLcdNm + " " + truck.mcrTon.toString()+ "톤"
             //위치(시),위치(구)
-            binding.descriptionLocationText.text = truck.mcrAddr1Nm + truck.mcrAddr2Nm
+            binding.descriptionLocationText.text = truck.mcrAddr1Nm + " " + truck.mcrAddr2Nm
             //타코데이터(km)
             binding.mcrKm.text = setDecimalFormat(truck.mcrKm)+"km"
             //차량 가격(만원)

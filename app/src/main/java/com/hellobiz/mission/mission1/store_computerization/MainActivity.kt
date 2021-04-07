@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
                             LinearLayoutManager.VERTICAL,
                             false
                         )
+
                     adapter.setOnItemClickListener(object : Store_Adapter.ItemClickListener {
                         override fun onItemClick(v: View?, position: Int, check: Int) {
                             Toast.makeText(this@MainActivity, "$position item checked, $check",

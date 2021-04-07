@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_sell"
+        android:enabled="true"
+        android:icon="@drawable/ic_car"
+        android:title="@string/sell_my_car"
+        />
+
+    <item
+        android:id="@+id/bottom_plate"
+        android:enabled="true"
+        android:icon="@drawable/ic_square"
+        android:title="@string/license_plate"
+        />
+
+    <item
+        android:id="@+id/bottom_chatting"
+        android:enabled="true"
+        android:icon="@drawable/ic_chat"
+        android:title="@string/chatting"
+        />
+
+    <item
+        android:id="@+id/bottom_magazine"
+        android:enabled="true"
+        android:icon="@drawable/ic_book"
+        android:title="@string/magazine"
+        />
+
+    <item
+        android:id="@+id/bottom_setting"
+        android:enabled="true"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/setting"
+        />
+</menu>
