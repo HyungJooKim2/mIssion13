@@ -1,0 +1,49 @@
+        if (requestCode == PICK_FROM_ALBUM) {   //onActivityResult 의 requestCode 값이 PICK_FROM_ALBUM 이면 해당 로직이 실행
+                photoUri =
+                    data?.data!!     //data.data() 를 통해 갤러리에서 선택한 이미지의 Uri를 content:///형태로 저장
+            var cursor: Cursor? = null
+            try {
+                val proj = arrayOf(MediaStore.Images.Media.DATA)    //MediaStore에서 미디어 파일 정보를 담아줌
+                Log.i(TAG, "proj = $proj")  //[Ljava.lang.String;@6478cd7
+
+                /**
+                query : 데이터베이스에 저장된 데이터를 얻기 위해서 데이터베이스 시스템에 정보를 요청,
+                우리는 그것을 "데이터베이스에 쿼리(Query)"한다고 말할 수 있음
+                (원하는 데이터를 얻기 위해 데이터베이스에 정보를 요청(Request)하는 것)
+                SQLite 데이터베이스에서 그 요청(Request)은 "SELECT" 문을 사용하여 작성할 수 있음.
+
+                cursor : 사용자가 현재 주시하고 있는 위치에 대한 표시 키보드 커서 또는 마우스 커서 등이 대표적
+                데이터베이스에 저장된 데이터를 쿼리하면 그 결과 데이터는, 한 개의 레코드만 가지거나,
+                또는 여러 개의 레코드가 포함된 레코드 집합(RecordSet)임. 이 때 레코드 집합(RecordSet)에
+                들어 있는 개별 레코드에 접근하여 그 값을 확인할 수 있는 기능을 제공해주는 것이 바로 커서(Cursor)임
+                참조 : https://recipes4dev.tistory.com/120
+                 **/
+
+                //cursor를 통해 Uri 스키마를 content:/// 에서 file:/// 로  변경
+                cursor = photoUri.let { contentResolver.query(it, proj, null, null, null) }
+                Log.i(
+                    TAG,
+                    "cursor = $cursor"
+                )  // android.content.ContentResolver$CursorWrapperInner@ffc30ad
+
+                if (cursor == null || cursor.getCount() < 1) {     //커서가 null(아무것도 미선택 되었을때 뒤로가기를 눌렀을 경우)
+                    return                                          //원래 화면으로 return
+                }
+
+                //column의 index를 가져옴
+                val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                Log.i(TAG, "column_index = $column_index")  //0
+
+                //cursor를 제일 첫번째 행(Row)으로 이동 시킨다.
+                cursor.moveToFirst()
+
+                //Uri로 부터 FilePath를 가져옴
+                tempFile = File(cursor.getString(column_index))
+
+                Log.i(TAG, "tempFile = $tempFile")  ///storage/emulated/0/DCIM/Camera/cat.jpg
+
+            } finally {
+                cursor?.close()
+            }
+            setImage()   //이미지 포맷을 decode하여 bitmap으로 변환시켜 imageview에 띄워줌
+        }

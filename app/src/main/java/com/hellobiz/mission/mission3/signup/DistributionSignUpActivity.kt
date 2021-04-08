@@ -4,43 +4,52 @@ import android.Manifest
 import android.R.attr
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import android.database.Cursor
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
+import android.provider.Settings
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.app.ActivityCompat
+import com.bumptech.glide.Glide
+import com.esafirm.imagepicker.features.ImagePicker
+import com.esafirm.imagepicker.features.ImagePickerFragment
+import com.esafirm.imagepicker.features.camera.DefaultCameraModule
+import com.esafirm.imagepicker.features.camera.OnImageReadyListener
+import com.esafirm.imagepicker.helper.ImagePickerPreferences
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.hellobiz.mission.BuildConfig
 import com.hellobiz.mission.R
 import com.hellobiz.mission.databinding.ActivityDistributionSignUpBinding
 import com.hellobiz.mission.error.model.ErrorRespose
-import com.hellobiz.mission.mission3.signup.model.ModificationModel
-import com.hellobiz.mission.mission3.signup.model.SignUpModel
-import com.hellobiz.mission.mission3.signup.service.ModificationService
-import com.hellobiz.mission.mission3.signup.service.SignUpService
-import com.hellobiz.mission.mission3.signup.signupinterface.EmployeeModification
-import com.hellobiz.mission.mission3.signup.signupinterface.SignUp
-import okio.ByteString.Companion.toByteString
+import com.hellobiz.mission.mission3.signup.model.ProfileUpdateModel
+import com.hellobiz.mission.mission3.signup.service.ProfileUpdateService
+import com.hellobiz.mission.mission3.signup.signupinterface.ProfileUpdate
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
-import java.lang.Exception
 
 
-class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,EmployeeModification {
+class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener, ProfileUpdate {
     private var mBinding: ActivityDistributionSignUpBinding? = null
     private val binding get() = mBinding!!
     private val PICK_FROM_ALBUM = 1 //onActivityResult 에서 requestCode 로 반환되는 값
     private var tempFile: File? = null
+    private lateinit var photoUri : Uri
+    private val REQUEST_CODE_PICKER = 2
+    private val RC_REQUEST_CAMERA = 3
+
+
+//    private val launcher = registerImagePicker {
+//        // handle result here
+//    }
+//    launcher.launch()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +60,22 @@ class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,Emp
         signUpCreateEvent()    //버튼을 눌렀을 시
 
     }
+//    fun ComponentActivity.registerImagePicker(
+//        callback: ImagePickerCallback
+//    ): ImagePickerLauncher {
+//        return ImagePickerLauncher(this, createLauncher(callback))
+//    }
+
+    private fun imagePicker(){
+
+        ImagePicker.create(this) // Activity or Fragment
+            .folderMode(true).single()
+            .start(REQUEST_CODE_PICKER)
+
+        ImagePicker.create(this).getIntent(applicationContext)
+    }
+
+
 
     /*
     startActivityForResult를 통해 다른 Activity로 이동한 후 다시 돌아오게 되면 onActivityResult 가 동작,
@@ -59,64 +84,31 @@ class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,Emp
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == PICK_FROM_ALBUM) {   //onActivityResult 의 requestCode 값이 PICK_FROM_ALBUM 이면 해당 로직이 실행
-            val photoUri: Uri? =
-                data?.data     //data.data() 를 통해 갤러리에서 선택한 이미지의 Uri를 content:///형태로 저장
-            var cursor: Cursor? = null
-            try {
-                val proj = arrayOf(MediaStore.Images.Media.DATA)    //MediaStore에서 미디어 파일 정보를 담아줌
-                Log.i(TAG, "proj = $proj")  //[Ljava.lang.String;@6478cd7
+        val cameraModule = DefaultCameraModule() // or ImmediateCameraModule  startActivityForResult(cameraModule.getIntent(context), RC_REQUEST_CAMERA);
+        if (requestCode === RC_REQUEST_CAMERA && resultCode === RESULT_OK && attr.data != null) {
+            cameraModule.getImage(applicationContext, data, OnImageReadyListener {
+                // do what you want to do with the image ...
 
-                /**
-                query : 데이터베이스에 저장된 데이터를 얻기 위해서 데이터베이스 시스템에 정보를 요청,
-                우리는 그것을 "데이터베이스에 쿼리(Query)"한다고 말할 수 있음
-                (원하는 데이터를 얻기 위해 데이터베이스에 정보를 요청(Request)하는 것)
-                SQLite 데이터베이스에서 그 요청(Request)은 "SELECT" 문을 사용하여 작성할 수 있음.
-
-                cursor : 사용자가 현재 주시하고 있는 위치에 대한 표시 키보드 커서 또는 마우스 커서 등이 대표적
-                데이터베이스에 저장된 데이터를 쿼리하면 그 결과 데이터는, 한 개의 레코드만 가지거나,
-                또는 여러 개의 레코드가 포함된 레코드 집합(RecordSet)임. 이 때 레코드 집합(RecordSet)에
-                들어 있는 개별 레코드에 접근하여 그 값을 확인할 수 있는 기능을 제공해주는 것이 바로 커서(Cursor)임
-                참조 : https://recipes4dev.tistory.com/120
-                 **/
-
-                //cursor를 통해 Uri 스키마를 content:/// 에서 file:/// 로  변경
-                cursor = photoUri?.let { contentResolver.query(it, proj, null, null, null) }
-                Log.i(
-                    TAG,
-                    "cursor = $cursor"
-                )  // android.content.ContentResolver$CursorWrapperInner@ffc30ad
-
-                if (cursor == null || cursor.getCount() < 1) {     //커서가 null(아무것도 미선택 되었을때 뒤로가기를 눌렀을 경우)
-                    return                                          //원래 화면으로 return
-                }
-
-                //column의 index를 가져옴
-                val column_index: Int = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                Log.i(TAG, "column_index = $column_index")  //0
-
-                //cursor를 제일 첫번째 행(Row)으로 이동 시킨다.
-                cursor.moveToFirst()
-
-                //Uri로 부터 FilePath를 가져옴
-                tempFile = File(cursor.getString(column_index))
-                Log.i(TAG, "tempFile = $tempFile")  ///storage/emulated/0/DCIM/Camera/cat.jpg
-
-            } finally {
-                cursor?.close()
+                // it's either List<Image> with one item or null (still need improvement)
             }
-            setImage()   //이미지 포맷을 decode하여 bitmap으로 변환시켜 imageview에 띄워줌
+            )
         }
     }
 
-    //이미지 포맷을 decode하여 bitmap으로 변환시켜 imageview에 띄워줌
-    private fun setImage() {
-        val options = BitmapFactory.Options()
-        val originalBm = BitmapFactory.decodeFile(tempFile?.absolutePath, options)
-        binding.signupImageview.setImageBitmap(originalBm)
+    //이미지 url을 가지고  imageview에 띄워줌
+    private fun setImage(){
+        Glide.with(applicationContext) .load(photoUri) .into(binding.signupImageview)
     }
 
-    //"/^(?=.*[A-Za-z])(?=.*\\d)(?=.*[\$@\$!%*#?&])[A-Za-z\\d\$@\$!%*#?&]{10,}\$/"
+
+    private fun openAppSettings() {
+        val intent = Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", this.packageName, null))
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
+
     //Validation 구성
     private fun signUpCreateEvent() {
         binding.signupBtn.setOnClickListener {
@@ -228,7 +220,13 @@ class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,Emp
                 ).show()
             } else {
                 try {
-                    getSignUpService()
+                    //                getModificationService()
+                    if(tempFile==null){
+                        Toast.makeText(applicationContext, "사진을 선택해 주세요", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        getProfileUpdateService()
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -270,7 +268,7 @@ class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,Emp
     private fun tedPermission() {
         val permissionListener: PermissionListener = object : PermissionListener {
             override fun onPermissionGranted() {
-                goToAlbum()   //앨범으로 이동
+                imagePicker()   //앨범으로 이동
             }
 
             override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
@@ -306,10 +304,10 @@ class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,Emp
     override fun onClick(v: View?) {
         when (v) {
             binding.signupImageview -> {
-                tedPermission()    //권한 요청 설정
+                tedPermission() //권한 요청 설정
             }
             binding.signupFindImageview -> {
-                tedPermission()    //권한 요청 설정
+                tedPermission() //권한 요청 설정
             }
         }
     }
@@ -318,31 +316,67 @@ class DistributionSignUpActivity : AppCompatActivity(), View.OnClickListener,Emp
         const val TAG = "DistributionSignUpActivity"
     }
 
-    private fun getSignUpService() {
-        val patchSignUpService = ModificationService(this)
-        patchSignUpService.getModificationService(
-            2,
-            binding.signupName.text.toString(),
-            binding.signupPhonenumber.text.toString(),
-            binding.signupEmail.text.toString(),
-            binding.signupPw.text.toString()
-        )
+//    private fun getModificationService() {
+//        val modificationService = ModificationService(this)
+//        modificationService.getModificationService(
+//            2,
+//            binding.signupName.text.toString(),
+//            binding.signupPhonenumber.text.toString(),
+//            binding.signupEmail.text.toString(),
+//            binding.signupPw.text.toString()
+//        )
+//    }
+
+
+    //참고 : https://velog.io/@dev_thk28/Android-Retrofit2-Multipart%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-Java
+    //파라미터를 넣어 프로필 업데이트 서비스 연동하여 PATCH 진행
+    private fun getProfileUpdateService() {
+        val profileUpdateService = ProfileUpdateService(this)
+
+        //api에 들어가야 하는 RequestBody 데이터 타입으로 변경
+        val nameBody: RequestBody =
+            binding.signupName.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val ageBody: RequestBody = binding.signupPhonenumber.text.toString()
+            .toRequestBody("text/plain".toMediaTypeOrNull())
+        val pwBody: RequestBody =
+            binding.signupPw.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val emailBody: RequestBody =
+            binding.signupEmail.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+
+        //map 에 서버에서 요청한 key 값에 맞춰서 담아줌
+        val paramsMap: MutableMap<String, RequestBody> = HashMap()
+        paramsMap.put("MEM_NAME", nameBody)
+        paramsMap.put("MEM_TEL", ageBody)
+        paramsMap.put("MEM_PASS", pwBody)
+        paramsMap.put("MEM_EMAIL", emailBody)
+
+        //파라미터 전달 및 서비스 연결
+        tempFile?.let {     //tempFile 이 null 이 아니여야함
+            profileUpdateService.getProfileUpdateService(
+                2,
+                paramsMap,
+                it
+            )
+        }
     }
 
-    override fun modificationSuccess(modificationModel: ModificationModel?) {
-            when(modificationModel?.code){
-                200->{
-                    Toast.makeText(applicationContext,"패치성공",Toast.LENGTH_SHORT).show()
-                }
+    override fun profileUpdateSuccess(profileUpdateModel: ProfileUpdateModel?) {
+        when (profileUpdateModel?.code) {
+            200 -> {
+                Toast.makeText(applicationContext, "서버 연동 성공", Toast.LENGTH_SHORT).show()
             }
+        }
     }
 
-    override fun modificationError(errorResponse: ErrorRespose) {
-
+    override fun profileUpdateError(errorResponse: ErrorRespose) {
     }
 
-    override fun modificationFailure(message: Throwable?) {
-
+    override fun profileUpdateFailure(message: Throwable?) {
     }
+
+
+
+
 }
+
 

@@ -74,5 +74,7 @@ dependencies {
     //마시멜로우 버전 이상 권한에 대한 허용을 위한 Tedpermission 라이브러리
     implementation 'gun0912.ted:tedpermission:2.2.3'
 
+    //imagepicker 라이브러리
+    implementation 'com.github.esafirm.android-image-picker:imagepicker:2.4.5'
 
 }

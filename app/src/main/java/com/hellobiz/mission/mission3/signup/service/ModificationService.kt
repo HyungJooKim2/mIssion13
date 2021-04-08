@@ -3,9 +3,7 @@ package com.hellobiz.mission.mission3.signup.service
 import com.hellobiz.mission.error.ErrorUtils
 import com.hellobiz.mission.mission3.mission3retrofit.Mission3Retrofit
 import com.hellobiz.mission.mission3.signup.model.ModificationModel
-import com.hellobiz.mission.mission3.signup.model.SignUpModel
 import com.hellobiz.mission.mission3.signup.signupinterface.EmployeeModification
-import com.hellobiz.mission.mission3.signup.signupinterface.SignUp
 import com.hellobiz.mission.serviceinterface.Services
 import okhttp3.ResponseBody
 import retrofit2.Call

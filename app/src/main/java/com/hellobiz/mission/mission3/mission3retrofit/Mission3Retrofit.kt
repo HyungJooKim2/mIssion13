@@ -28,8 +28,9 @@ class Mission3Retrofit {
                     .connectTimeout(10000, TimeUnit.MILLISECONDS)
                     .writeTimeout(10000, TimeUnit.MILLISECONDS)
                     .addInterceptor(loggingInterceptor) //for test
-                    .addInterceptor(SupportInterceptor())
                     .build()
+
+                //.addInterceptor(SupportInterceptor())
 
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
