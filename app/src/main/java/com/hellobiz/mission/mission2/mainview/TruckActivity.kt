@@ -30,7 +30,7 @@ class TruckActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.truck_frame_layout, SellFrag()).commit()
 
         //첫 화면이 켜졌을 경우 해당 아이템을 선택
-        binding.bottomnavigationview.selectedItemId = R.id.bottom_list
+        binding.bottomnavigationview.selectedItemId = R.id.bottom_sell
 
         //아이템을 클릭했을때 동작하는 리스너
         //https://tedrepository.tistory.com/6 (개념 참고)

@@ -9,21 +9,39 @@ import com.hellobiz.mission.mission1.detailview.interfaces.DetailView
 import com.hellobiz.mission.mission1.detailview.model.MyDetailModel
 import com.hellobiz.mission.mission1.detailview.service.DetailService
 import com.hellobiz.mission.R
+import com.hellobiz.mission.databinding.ActivityDetailViewBinding
 import com.hellobiz.mission.error.model.ErrorRespose
+import com.hellobiz.mission.mission1.detailview.model.MyDetailResponse
 import java.lang.Exception
 
 // ---- 상세화면
 // 리스트 아이템 클릭 후, 아이디를 받아와서 상세화면을 구성한다.
 // 구성 시, 인터페이스를 호출하여 뷰에 반환한다.
 class DetailViewActivity : AppCompatActivity(), DetailView {
+    private var mBinding: ActivityDetailViewBinding? = null
+    private val binding get() = mBinding!!
+    private lateinit var Detaildata : MyDetailResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_view)
+        mBinding = ActivityDetailViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         //click한 id값을 가져옴
         val id = intent.getIntExtra("MyStoreList", -1)
         findViewById<TextView>(R.id.id_number).text = id.toString()
         setService(id)
+    }
+
+    private fun setText(){
+        binding.raqBrandNm.text = Detaildata.raqBrandNm // 브랜드 명칭
+        binding.raqCarNm.text = Detaildata.raqCarNm
+        binding.raqYears.text = Detaildata.raqYears
+        binding.raqDistance.text = Detaildata.raqDistance
+        binding.raqArea.text = Detaildata.raqArea
+        binding.raqRepairType.text = Detaildata.raqRepair
+        binding.raqInsureTypeNm.text = Detaildata.raqInsureTypeNm
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -31,15 +49,8 @@ class DetailViewActivity : AppCompatActivity(), DetailView {
         when (myDetailModel.code) {
             200 -> {
                 try {
-                    val Detaildata = myDetailModel.data
-                    findViewById<TextView>(R.id.RAQ_BRAND_NM).text = Detaildata[0].RAQ_BRAND_NM // 브랜드 명칭
-                    findViewById<TextView>(R.id.RAQ_CAR_NM).text = Detaildata[0].RAQ_CAR_NM     // 차량명칭
-                    findViewById<TextView>(R.id.MEM_NICK).text = Detaildata[0].MEM_NICK
-                    findViewById<TextView>(R.id.RAQ_YEARS).text = Detaildata[0].RAQ_YEARS+"년"
-                    findViewById<TextView>(R.id.RAQ_DISTANCE).text = Detaildata[0].RAQ_DISTANCE+"km"
-                    findViewById<TextView>(R.id.RAQ_AREA).text = Detaildata[0].RAQ_AREA
-                    findViewById<TextView>(R.id.RAQ_REPAIR_TYPE).text = Detaildata[0].RAQ_REPAIR
-                    findViewById<TextView>(R.id.RAQ_INSURE_TYPE_NM).text = Detaildata[0].RAQ_INSURE_TYPE_NM
+                    Detaildata = myDetailModel.data[0]
+                    setText()
                 } catch (e:Exception){
                     e.printStackTrace()
                 }
@@ -57,7 +68,7 @@ class DetailViewActivity : AppCompatActivity(), DetailView {
 
         private fun setService(id: Int) {
             val DetailService = DetailService(this)
-            DetailService.GetDetail(id)
+            DetailService.getDetail(id)
         }
     }
 

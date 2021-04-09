@@ -29,15 +29,15 @@ class StoreService(mainActivityView: MainActivityView) {
                 val MyStoreModel : MyStoreModel? = response.body()
                 val error : ResponseBody? = response.errorBody()
                 if(MyStoreModel == null){
-                    if(error != null) mMainActivityView.MainError(ErrorUtils.paresError(error))
-                    else mMainActivityView.MainFailure(null)
+                    if(error != null) mMainActivityView.mainError(ErrorUtils.paresError(error))
+                    else mMainActivityView.mainFailure(null)
                     return
                 }
-                mMainActivityView.MainSuccess(MyStoreModel)
+                mMainActivityView.mainSuccess(MyStoreModel)
             }
 
             override fun onFailure(call: Call<MyStoreModel>, t: Throwable) {
-                mMainActivityView.MainFailure(t)
+                mMainActivityView.mainFailure(t)
             }
         })
     }

@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-<!--    android:screenOrientation="unspecified"-->
+    <!--    android:screenOrientation="unspecified"-->
 
     <application
         android:allowBackup="true"
@@ -18,21 +18,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".mission3.signup.DistributionSignUpActivity"
-       >
+        <activity android:name=".mission3.signup.DistributionSignUpActivity"></activity>
+        <activity android:name=".mission4.DistributionMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mission3.distributionmain.DistributionMainActivity"></activity>
         <activity android:name=".mission2.testpackage.TabTestActivty" />
-        <activity android:name=".mission2.myvehicleforsale.MyVehicleAcitivty" />
+
         <activity android:name=".mission2.testpackage.TestActivity" />
         <activity android:name=".mission2.mainview.TruckActivity"></activity>
         <activity android:name=".mission1.detailview.DetailViewActivity" />
-        <activity android:name=".store_computerization.MainActivity" />
+        <activity android:name=".store_computerization.MainActivity">
+        </activity>
     </application>
 </manifest>

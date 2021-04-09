@@ -2,6 +2,7 @@ package com.hellobiz.mission.serviceinterface
 
 import com.hellobiz.mission.mission3.signup.model.ModificationModel
 import com.hellobiz.mission.mission3.signup.model.ProfileUpdateModel
+import com.hellobiz.mission.mission4.puttingtogether.mission3.model.ManagementModel
 import com.hellobiz.mission2.mainview.model.MainViewModel
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -14,6 +15,7 @@ interface Services {
     메인화면 정보 가져오는 api
     @return 단순 응답 바디를 반환값으로 받는 Call
      **/
+
     @GET("api/truck/list/GetTruckList?MCR_LCD=&MCR_PRICE&MHT_USR_ID=4&MHT_USR_TYPE=DAL&MCR_SCD=&MCR_SCD_SNM&MCR_YEAR_MM_START=&MCR_YEAR_MM_END=&PAGE=3")
     fun GetMainViewData(): Call<MainViewModel>
 
@@ -74,5 +76,10 @@ interface Services {
         @Field("SFF_USR_ID") sffUserId: String,
         @Field("SFF_PASS") sffPass: String
     ): Call<ModificationModel>
+
+    @GET("api/client/price/GetPriceGroupList?")
+    fun getManagementData(@Query("SRS_ID") srsId:Int?, @Query("MEM_ID") memId:Int, @Query("PAGE")page:Int)
+    :Call<ManagementModel?>
+
 }
 

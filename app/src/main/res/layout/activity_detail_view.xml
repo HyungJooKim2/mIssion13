@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/RAQ_BRAND_NM"
+            android:id="@+id/raq_brand_nm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="포드"
@@ -38,7 +38,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/RAQ_CAR_NM"
+            android:id="@+id/raq_car_nm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
@@ -49,7 +49,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/car_NICK"
+        android:id="@+id/car_nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linear1" />
 
     <TextView
-        android:id="@+id/MEM_NICK"
+        android:id="@+id/mem_nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1.5dp"
@@ -70,7 +70,7 @@
         android:textColor="#333333"
         android:textSize="13sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toEndOf="@id/car_NICK"
+        app:layout_constraintStart_toEndOf="@id/car_nick"
         app:layout_constraintTop_toBottomOf="@+id/linear1" />
 
     <TextView
@@ -83,10 +83,10 @@
         android:textSize="13sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/car_NICK" />
+        app:layout_constraintTop_toBottomOf="@id/car_nick" />
 
     <TextView
-        android:id="@+id/RAQ_YEARS"
+        android:id="@+id/raq_years"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -95,7 +95,7 @@
         android:textSize="13sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/MEM_NICK" />
+        app:layout_constraintTop_toBottomOf="@id/mem_nick" />
 
 
     <TextView
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@+id/car_year" />
 
     <TextView
-        android:id="@+id/RAQ_DISTANCE"
+        android:id="@+id/raq_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -135,11 +135,11 @@
         android:textStyle="normal"
         app:layout_constraintWidth_percent="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/RAQ_AREA"
+        app:layout_constraintEnd_toStartOf="@+id/raq_area"
         app:layout_constraintTop_toBottomOf="@id/car_distance" />
 
     <TextView
-        android:id="@+id/RAQ_AREA"
+        android:id="@+id/raq_area"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -151,10 +151,10 @@
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/car_area"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RAQ_DISTANCE" />
+        app:layout_constraintTop_toBottomOf="@+id/raq_distance" />
 
     <TextView
-        android:id="@+id/car_REPAIR_TYPE"
+        android:id="@+id/car_repair_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -166,7 +166,7 @@
         app:layout_constraintTop_toBottomOf="@id/car_area" />
 
     <TextView
-        android:id="@+id/RAQ_REPAIR_TYPE"
+        android:id="@+id/raq_repair_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -175,10 +175,10 @@
         android:textSize="13sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/car_REPAIR_TYPE" />
+        app:layout_constraintTop_toBottomOf="@id/car_repair_type" />
 
     <TextView
-        android:id="@+id/car_INSURE_TYPE_NM"
+        android:id="@+id/car_insure_type_nm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -187,10 +187,10 @@
         android:textSize="13sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RAQ_REPAIR_TYPE" />
+        app:layout_constraintTop_toBottomOf="@+id/raq_repair_type" />
 
     <TextView
-        android:id="@+id/RAQ_INSURE_TYPE_NM"
+        android:id="@+id/raq_insure_type_nm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -199,7 +199,7 @@
         android:textSize="13sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RAQ_REPAIR_TYPE" />
+        app:layout_constraintTop_toBottomOf="@+id/raq_repair_type" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

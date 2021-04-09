@@ -2,30 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bottom_list"
+        android:id="@+id/mission1"
         android:enabled="true"
-        android:icon="@drawable/ic_main"
+        android:icon="@drawable/ic_shopping_cart"
         android:title=""
         />
 
     <item
-        android:id="@+id/bottom_add"
+        android:id="@+id/mission2"
         android:enabled="true"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/ic_car"
         android:title=""
         />
 
     <item
-        android:id="@+id/bottom_home"
+        android:id="@+id/mission3"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title=""
         />
 
     <item
-        android:id="@+id/bottom_book"
+        android:id="@+id/mission4"
         android:enabled="true"
-        android:icon="@drawable/ic_book"
+        android:icon="@drawable/ic_setting"
         android:title=""
         />
 </menu>

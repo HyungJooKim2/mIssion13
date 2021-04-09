@@ -14,7 +14,7 @@ class DetailService(detailView: DetailView) {
     private val mDetailView: DetailView = detailView
 
     //GlobalApplication에 설정한 retrofit과 Interface 연결
-    fun GetDetail(id: Int) {
+    fun getDetail(id: Int) {
         val detailRetrofitInterface: DetailRetrofitInterface =
             GlobalApplication.getRetrofit()!!.create(
                 DetailRetrofitInterface::class.java
@@ -30,14 +30,14 @@ class DetailService(detailView: DetailView) {
                 call: Call<MyDetailModel?>,
                 response: Response<MyDetailModel?>
             ) {
-                val MyDetailModel: MyDetailModel? = response.body()
+                val myDetailModel: MyDetailModel? = response.body()
                 val error: ResponseBody? = response.errorBody()
-                if (MyDetailModel == null) {
+                if (myDetailModel == null) {
                     if (error != null) mDetailView.detailError(ErrorUtils.paresError(error))
                     else mDetailView.detailFailure(null)
                     return
                 }
-                mDetailView.detailSuccess(MyDetailModel)
+                mDetailView.detailSuccess(myDetailModel)
             }
 
             override fun onFailure(call: Call<MyDetailModel?>, t: Throwable) {

@@ -47,3 +47,14 @@
             }
             setImage()   //이미지 포맷을 decode하여 bitmap으로 변환시켜 imageview에 띄워줌
         }
+
+
+            //앨범으로 이동
+            private fun goToAlbum() {
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = MediaStore.Images.Media.CONTENT_TYPE
+
+                //startActivityForResult : 새 액티비티를 열어줌 + 결과값 전달 (쌍방향)
+                startActivityForResult(intent, PICK_FROM_ALBUM)
+
+            }

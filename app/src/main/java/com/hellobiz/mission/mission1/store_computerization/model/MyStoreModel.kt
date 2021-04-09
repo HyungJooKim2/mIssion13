@@ -7,13 +7,14 @@ data class MyStoreModel(
     @SerializedName("message") var message : String,
     @SerializedName("data") var data : ArrayList<MyStoreResponse>,
 )
+
 data class MyStoreResponse(
-    @SerializedName("READ_YN") var READ_YN : String,
-    @SerializedName("ID") var ID : Int,
-    @SerializedName("REQ_NAME") var REQ_NAME : String,
-    @SerializedName("REQ_DT") var REQ_DT : String,
-    @SerializedName("CLOSE_YN") var CLOSE_YN : String,
-    @SerializedName("AREA_NM") var AREA_NM : String,
-    @SerializedName("MEM_NICK") var MEM_NICK : String,
-    @SerializedName("CATEGORY_CD") var CATEGORY_CD : String,
+    @SerializedName("READ_YN") var readYn : String,
+    @SerializedName("ID") var id : Int,
+    @SerializedName("REQ_NAME") var reqName : String,
+    @SerializedName("REQ_DT") var reqDt : String,
+    @SerializedName("CLOSE_YN") var closeYn : String,
+    @SerializedName("AREA_NM") var areaNm : String,
+    @SerializedName("MEM_NICK") var memNick : String,
+    @SerializedName("CATEGORY_CD") var categoryCd : String,
 )

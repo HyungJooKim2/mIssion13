@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back"/>
+
+        <TextView
+            android:id="@+id/setting"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/setting"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    <TextView
+        android:id="@+id/my_profile"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/profile"
+        android:paddingStart="20dp"
+        android:paddingRight="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting"
+        android:gravity="start|center_vertical"
+        android:drawableEnd="@drawable/ic_forward"
+        android:textColor="@color/black"
+        />
+
+
+
+    <TextView
+        android:id="@+id/store_mangement"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/storemanagemnet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_profile"
+        android:paddingStart="20dp"
+        android:paddingRight="15dp"
+        android:gravity="start|center_vertical"
+        android:drawableEnd="@drawable/ic_forward"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/staff_mangement"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/staffmanagement"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/store_mangement"
+        android:paddingStart="20dp"
+        android:paddingRight="15dp"
+        android:gravity="start|center_vertical"
+        android:drawableEnd="@drawable/ic_forward"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/personal_information"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/personalinformation"
+        android:paddingStart="20dp"
+        android:paddingRight="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/staff_mangement"
+        android:gravity="start|center_vertical"
+        android:drawableEnd="@drawable/ic_forward"
+        android:textColor="@color/black"
+        >
+    </TextView>
+    <TextView
+        android:drawableEnd="@drawable/ic_forward"
+        android:id="@+id/doc_service"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doc_service"
+        android:paddingStart="20dp"
+        android:paddingRight="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/personal_information"
+        android:gravity="start|center_vertical"
+        android:textColor="@color/black"
+        >
+    </TextView>
+    <TextView
+        android:id="@+id/log_out"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/logout"
+        android:paddingStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/doc_service"
+        android:gravity="start|center_vertical"
+        android:textColor="@color/black"
+        >
+    </TextView>
+    <TextView
+        android:id="@+id/sign_out"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/signout"
+        android:paddingStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/log_out"
+        android:gravity="start|center_vertical"
+        android:textColor="@color/description"
+        >
+    </TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

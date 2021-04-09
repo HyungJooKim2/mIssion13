@@ -6,4 +6,6 @@
     <color name="title">#3d3d3d</color>
     <color name="description">#979797</color>
     <color name="price">#a51f25</color>
+    <color name="black">#333333</color>
+    <color name="lightGreen">#86E389</color>
 </resources>

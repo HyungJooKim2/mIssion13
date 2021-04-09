@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/bind"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:cardCornerRadius="8dp"
@@ -20,7 +21,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/Linear1"
+                android:id="@+id/linear1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -30,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/Index"
+                    android:id="@+id/index"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10 "
@@ -39,7 +40,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/REQ_NAME"
+                    android:id="@+id/req_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Titel"
@@ -48,7 +49,6 @@
                     android:textStyle="bold"
                     android:layout_marginLeft="5dp"
                     />
-
             </LinearLayout>
 
             <LinearLayout
@@ -58,10 +58,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Linear1">
+                app:layout_constraintTop_toBottomOf="@id/linear1">
 
                 <TextView
-                    android:id="@+id/MEM_NICK"
+                    android:id="@+id/mem_nick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="MEM_NICK"
@@ -76,7 +76,7 @@
                     android:textStyle="normal"/>
 
                 <TextView
-                    android:id="@+id/AREA_NM"
+                    android:id="@+id/area_nm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="AREA_NM"

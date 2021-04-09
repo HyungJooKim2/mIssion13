@@ -7,10 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hellobiz.mission.R
+import com.hellobiz.mission.databinding.MainItem2Binding
+import com.hellobiz.mission.databinding.StoreItem2Binding
+import com.hellobiz.mission.mission2.mainview.TruckAdapter
 import com.hellobiz.mission.store_computerization.model.MyStoreResponse
+import com.hellobiz.mission2.mainview.model.MainViewResponse
 
 
-class Store_Adapter() : RecyclerView.Adapter<Store_Adapter.StoreViewHolder>(){
+class StoreAdapter() : RecyclerView.Adapter<StoreAdapter.StoreViewHolder>(){
     private var listener: ItemClickListener? = null
     private var mList : ArrayList<MyStoreResponse>? = null
     private var context : Context? = null
@@ -20,45 +24,49 @@ class Store_Adapter() : RecyclerView.Adapter<Store_Adapter.StoreViewHolder>(){
         mList = Stores
         this.context = context
     }
-    // position과 check 여부를 알려주는 리스너 콜백을 정의
+
+    //position과 check 여부를 알려주는 리스너 콜백을 정의
     interface ItemClickListener{
         fun onItemClick(v: View?, position: Int, check: Int)
     }
 
+    //리스너에 클릭리스너 연결
     fun setOnItemClickListener(listener: ItemClickListener) {
         this.listener = listener
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.store_item2,parent,false)
-        return StoreViewHolder(view)
+        val binding = StoreItem2Binding.inflate(
+            LayoutInflater.from(context), parent, false
+        )
+        return StoreViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
-        holder.REQ_NAME.text = mList?.get(position)?.REQ_NAME
-        holder.MEM_NICK.text = mList?.get(position)?.MEM_NICK
-        holder.AREA_NM.text = mList?.get(position)?.AREA_NM
-        holder.Index.text = mList?.get(position)?.ID.toString()
+        holder.bind(mList!![position])
     }
 
     override fun getItemCount(): Int {
         return mList!!.size
     }
 
-    inner class StoreViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val REQ_NAME : TextView = view.findViewById(R.id.REQ_NAME)
-        val MEM_NICK : TextView = view.findViewById(R.id.MEM_NICK)
-        val AREA_NM : TextView = view.findViewById(R.id.AREA_NM)
-        val Index : TextView = view.findViewById(R.id.Index)
+    inner class StoreViewHolder(val binding: StoreItem2Binding) :RecyclerView.ViewHolder(binding.root){
+        //서버에서 받아온 값으로 setText
+        fun bind(store : MyStoreResponse){
+            binding.reqName.text = store.reqName
+            binding.memNick.text = store.memNick
+            binding.areaNm.text = store.areaNm
+            binding.index.text = store.id.toString()
+        }
 
         init {
-            // View에 클릭 리스너를 붙인다
-            view.setOnClickListener{v->
+            // 해당 view에 클릭 리스너를 붙인다
+            binding.bind.setOnClickListener{v->
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION){
                     if (listener != null) {
-                        listener!!.onItemClick(v,pos,mList!![pos].ID)
+                        listener!!.onItemClick(v,pos,mList!![pos].id)
                     }
                 }
             }

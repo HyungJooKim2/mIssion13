@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hellobiz.mission.mission3.distributionmain.DistributionMainActivity">
+    tools:context="com.hellobiz.mission.mission4.DistributionMainActivity">
 
 
     <FrameLayout
-        android:id="@+id/framelayout"
+        android:id="@+id/framelayout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"

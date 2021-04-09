@@ -14,19 +14,17 @@ import com.hellobiz.mission.databinding.MainItem2Binding
 import com.hellobiz.mission2.mainview.model.MainViewResponse
 import java.text.DecimalFormat
 
-class TruckAdapter(
-    mContext: Context?, mTruckList: ArrayList<MainViewResponse>
-):RecyclerView.Adapter<TruckAdapter.TruckViewHolder>() {
-    private var mList: ArrayList<MainViewResponse> = mTruckList
-    private var context: Context? = mContext
+class TruckAdapter():RecyclerView.Adapter<TruckAdapter.TruckViewHolder>() {
+    private var mList: ArrayList<MainViewResponse>? = null
+    private var context: Context? = null
 
-/*
+
     constructor(context: Context?, Trucks: ArrayList<MainViewResponse>) : this() {
         //엑티비티에서 넘어온 Trucks를 Adapter의 mList에 대입
         mList = Trucks
         this.context = context
     }
-*/
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -39,12 +37,12 @@ class TruckAdapter(
     }
 
     override fun onBindViewHolder(holder: TruckViewHolder, position: Int) {
-        holder.bind(mList[position])
+        holder.bind(mList!![position])
 
     }
 
     override fun getItemCount(): Int {
-            return mList.size
+            return mList!!.size
     }
 
     class TruckViewHolder(val binding: MainItem2Binding) : RecyclerView.ViewHolder(binding.root) {
