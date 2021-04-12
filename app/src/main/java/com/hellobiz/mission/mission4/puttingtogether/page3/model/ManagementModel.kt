@@ -1,4 +1,4 @@
-package com.hellobiz.mission.mission4.puttingtogether.mission3.model
+package com.hellobiz.mission.mission4.puttingtogether.page3.model
 
 import com.google.gson.annotations.SerializedName
 

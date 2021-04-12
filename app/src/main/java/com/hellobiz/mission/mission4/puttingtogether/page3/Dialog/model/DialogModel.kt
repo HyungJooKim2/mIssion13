@@ -1,7 +1,6 @@
-package com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog.model
+package com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.model
 
 import com.google.gson.annotations.SerializedName
-import com.hellobiz.mission.mission4.puttingtogether.mission3.model.ManagementResponse
 
 data class DialogModel(
     @SerializedName("code") var code: Int,

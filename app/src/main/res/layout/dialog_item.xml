@@ -1,69 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-<RadioGroup
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
 
-        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-    <RadioButton
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-    <TextView
-        android:id="@+id/item_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/text1"
-        tools:text = "15"/>
+            >
 
-    <TextView
-        android:id="@+id/item_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="송파유통"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/item_id"
-        />
-        
-        <TextView
-            android:id="@+id/item_srs_addr1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/text1"
-            app:layout_constraintTop_toBottomOf="@id/item_name"
-            tools:text = "서울특별시 송파구"
-            />
+            <RadioButton
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
 
-        <TextView
-            android:id="@+id/item_srs_addr2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/item_srs_addr1"
-            app:layout_constraintTop_toBottomOf="@id/item_name"
-            tools:text = "1층"
-            />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/text1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="15" />
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:ems="13"
+                android:maxLines="1"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/item_id"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="송파유통" />
+
+            <TextView
+                android:id="@+id/item_srs_addr1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:ellipsize="end"
+                android:ems="11"
+                android:maxLines="1"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text1"
+                app:layout_constraintTop_toBottomOf="@id/item_name"
+                tools:text="서울특별시 송파구" />
+
+            <TextView
+                android:id="@+id/item_srs_addr2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:ellipsize="end"
+                android:ems="5"
+                android:gravity="end"
+                android:maxLines="1"
+                android:textSize="12sp"
+
+                app:layout_constraintStart_toEndOf="@id/item_srs_addr1"
+                app:layout_constraintTop_toBottomOf="@id/item_name"
+                tools:text="1층" />
 
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</RadioGroup>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

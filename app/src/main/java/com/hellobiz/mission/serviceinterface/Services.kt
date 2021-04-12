@@ -2,8 +2,9 @@ package com.hellobiz.mission.serviceinterface
 
 import com.hellobiz.mission.mission3.signup.model.ModificationModel
 import com.hellobiz.mission.mission3.signup.model.ProfileUpdateModel
-import com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog.model.DialogModel
-import com.hellobiz.mission.mission4.puttingtogether.mission3.model.ManagementModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.model.ClientModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.model.DialogModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.model.ManagementModel
 import com.hellobiz.mission2.mainview.model.MainViewModel
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -83,8 +84,13 @@ interface Services {
     :Call<ManagementModel?>
 
     @GET("api/store/GetStoreList?")
-    fun getDialogData(@Query("MEM_ID") memId:Int?, @Query("MEM_TYPE") memType:Int, @Query("PAGE")page:Int)
+    fun getDialogData(@Query("MEM_ID") memId:Int?, @Query("MEM_TYPE") memType:String, @Query("PAGE")page:Int)
             :Call<DialogModel?>
+
+
+    @GET("api/client/client/GetClientList?")
+    fun getClientData(@Query("MEM_ID") memId:Int?, @Query("MEM_TYPE") memType:String, @Query("SRS_ID")srsId:Int,@Query("PAGE")page:Int)
+            :Call<ClientModel?>
 
 }
 

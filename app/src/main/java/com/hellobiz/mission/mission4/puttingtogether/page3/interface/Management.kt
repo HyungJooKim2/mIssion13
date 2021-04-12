@@ -1,7 +1,7 @@
-package com.hellobiz.mission.mission4.puttingtogether.mission3.`interface`
+package com.hellobiz.mission.mission4.puttingtogether.page3.`interface`
 
 import com.hellobiz.mission.error.model.ErrorRespose
-import com.hellobiz.mission.mission4.puttingtogether.mission3.model.ManagementModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.model.ManagementModel
 
 
 interface Management {

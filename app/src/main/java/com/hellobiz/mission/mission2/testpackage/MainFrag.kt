@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.hellobiz.mission.R
 import com.hellobiz.mission.databinding.FragMainBinding
-import com.hellobiz.mission.mission4.puttingtogether.mission2.Mission2Frag
-import com.hellobiz.mission.mission4.puttingtogether.mission4.Mission4Frag
-import com.hellobiz.mission.mission4.puttingtogether.mission3.Mission3Frag
-import com.hellobiz.mission.mission4.puttingtogether.mission1.Mission1Frag
+import com.hellobiz.mission.mission4.puttingtogether.page2.Mission2Frag
+import com.hellobiz.mission.mission4.puttingtogether.page4.Mission4Frag
+import com.hellobiz.mission.mission4.puttingtogether.page3.Mission3Frag
+import com.hellobiz.mission.mission4.puttingtogether.page1.Mission1Frag
 
 class MainFrag : Fragment() {
     private lateinit var myContext: Context

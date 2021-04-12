@@ -1,11 +1,9 @@
-package com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog.service
+package com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.service
 
 import com.hellobiz.mission.error.ErrorUtils
 import com.hellobiz.mission.mission3.mission3retrofit.Mission3Retrofit
-import com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog.`interface`.Dialog
-import com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog.model.DialogModel
-import com.hellobiz.mission.mission4.puttingtogether.mission3.`interface`.Management
-import com.hellobiz.mission.mission4.puttingtogether.mission3.model.ManagementModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.`interface`.Dialog
+import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.model.DialogModel
 import com.hellobiz.mission.serviceinterface.Services
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -16,7 +14,7 @@ class DialogService(dialog : Dialog){
 
     private val mDialog : Dialog = dialog
 
-    fun getDialogtService(memId:Int,memType:Int,page:Int){
+    fun getDialogtService(memId:Int,memType:String,page:Int){
         val dialogInterface : Services =
             Mission3Retrofit.getRetrofit()!!.create(
                 Services::class.java

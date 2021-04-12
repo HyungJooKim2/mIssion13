@@ -56,7 +56,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_text"
-                tools:text="서울특별시 강남구0000000000000000000000" />
+                tools:text="ㅁㅇㄴㅇ" />
 
 
             <TextView

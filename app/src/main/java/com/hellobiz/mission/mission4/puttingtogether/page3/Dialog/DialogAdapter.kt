@@ -1,4 +1,4 @@
-package com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog
+package com.hellobiz.mission.mission4.puttingtogether.page3.Dialog
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hellobiz.mission.databinding.DialogItemBinding
-import com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog.model.DialogResponse
+import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.model.DialogResponse
 
 class DialogAdapter(): RecyclerView.Adapter<DialogAdapter.DialogViewHolder>(){
     private var listener: ItemClickListener? = null

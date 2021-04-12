@@ -2,13 +2,12 @@ package com.hellobiz.mission.mission4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
 import com.hellobiz.mission.R
 import com.hellobiz.mission.databinding.ActivityDistributionMainBinding
-import com.hellobiz.mission.mission4.puttingtogether.mission2.Mission2Frag
-import com.hellobiz.mission.mission4.puttingtogether.mission4.Mission4Frag
-import com.hellobiz.mission.mission4.puttingtogether.mission3.Mission3Frag
-import com.hellobiz.mission.mission4.puttingtogether.mission1.Mission1Frag
+import com.hellobiz.mission.mission4.puttingtogether.page2.Mission2Frag
+import com.hellobiz.mission.mission4.puttingtogether.page4.Mission4Frag
+import com.hellobiz.mission.mission4.puttingtogether.page3.Mission3Frag
+import com.hellobiz.mission.mission4.puttingtogether.page1.Mission1Frag
 
 class DistributionMainActivity : AppCompatActivity() {
     private var mBinding: ActivityDistributionMainBinding? = null
