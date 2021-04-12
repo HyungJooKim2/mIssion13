@@ -1,6 +1,7 @@
 package com.hellobiz.mission.mission4.puttingtogether.mission4
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.hellobiz.mission.R
 import com.hellobiz.mission.databinding.FragmentMission4Binding
+import com.hellobiz.mission.mission3.signup.DistributionSignUpActivity
 import com.hellobiz.mission.mission4.puttingtogether.mission3.Mission3Frag
 
 class Mission4Frag : Fragment(),View.OnClickListener {
@@ -27,8 +29,7 @@ class Mission4Frag : Fragment(),View.OnClickListener {
 
     //프로필 업데이트 화면을 띄워줌
     private fun moveMission3(){
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.framelayout2, Mission3Frag())?.commit()
+        startActivity(Intent(requireContext(),DistributionSignUpActivity::class.java))
     }
 
     override fun onClick(v: View?) {
