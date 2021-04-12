@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hellobiz.mission.R
 import com.hellobiz.mission.databinding.MainItem2Binding
+import com.hellobiz.mission.mission4.puttingtogether.mission2.DisList
 import com.hellobiz.mission2.mainview.model.MainViewResponse
 import java.text.DecimalFormat
 

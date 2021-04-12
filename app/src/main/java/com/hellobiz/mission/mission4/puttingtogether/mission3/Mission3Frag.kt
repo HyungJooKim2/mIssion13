@@ -9,17 +9,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.hellobiz.mission.databinding.FragmentMission3Binding
 import com.hellobiz.mission.error.model.ErrorRespose
+import com.hellobiz.mission.mission4.puttingtogether.mission3.Dialog.DialogFragment
 import com.hellobiz.mission.mission4.puttingtogether.mission3.`interface`.Management
 import com.hellobiz.mission.mission4.puttingtogether.mission3.model.ManagementModel
 import com.hellobiz.mission.mission4.puttingtogether.mission3.model.ManagementResponse
 import com.hellobiz.mission.mission4.puttingtogether.mission3.service.ManagementService
 
-class Mission3Frag : Fragment() , Management {
+class Mission3Frag : Fragment() , Management, View.OnClickListener {
     private var mBinding: FragmentMission3Binding? = null
     private val binding get() = mBinding!!
     private var managementData : ArrayList<Manage> = ArrayList()
     private var managementData2 : ArrayList<ManagementResponse> = ArrayList()
     private var adapter : ManagementAdapter = ManagementAdapter()
+    private var dialog2 = DialogFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +30,10 @@ class Mission3Frag : Fragment() , Management {
         mBinding = FragmentMission3Binding.inflate(inflater, container, false)
 
         getMainRecyclerview()
-        getMainService()
+        getMainService(24,17,1)
+        setTabLayout()
+        binding.manageText1.setOnClickListener(this)
+
         return binding.root
     }
 
@@ -42,9 +47,9 @@ class Mission3Frag : Fragment() , Management {
     }
 
 
-    private fun getMainService() {
+    private fun getMainService(a:Int,b:Int,c:Int) {
         val managementService = ManagementService(this)
-        managementService.getManagementService(24,17,1)
+        managementService.getManagementService(a,b,c)
     }
 
     private fun getMainRecyclerview(){
@@ -63,24 +68,27 @@ class Mission3Frag : Fragment() , Management {
         binding.tabLayout2.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab!!.position) {
-//
+                    0 -> getMainService(24,17,1)
+                    1 -> getMainService(30,32,1)
                 }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
+
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
+
             }
         })
     }
 
 
     override fun managementSuccess(managementModel: ManagementModel?) {
-
         when(managementModel?.code) {
             200 -> {
                 try {
+                    managementData2.clear()
                     managementModel.let { managementData2.addAll(it.data) }
                     adapter.notifyDataSetChanged()
                 }catch (e:Exception){
@@ -98,5 +106,17 @@ class Mission3Frag : Fragment() , Management {
 
     }
 
+    override fun onClick(v: View?) {
+        when(v){
+            binding.manageText1 ->{
+                fragmentManager?.let { dialog2.show(it,"dialogfragment") }
+                dialog2.setOnItemClickListener(object : DialogFragment.DialClickListener{
+                    override fun DialMemberClick(check: Boolean) {
 
+                    }
+
+                })
+            }
+        }
+    }
 }

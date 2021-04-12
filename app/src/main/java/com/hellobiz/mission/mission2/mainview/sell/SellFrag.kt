@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
-import com.hellobiz.mission.R
 import com.hellobiz.mission.databinding.FragmentSellBinding
 import com.hellobiz.mission.error.model.ErrorRespose
 import com.hellobiz.mission.mission2.mainview.TruckAdapter

@@ -26,7 +26,7 @@
         />
 
     <TextView
-        android:id="@+id/mange_text1"
+        android:id="@+id/manage_text1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="신내유통"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mange_text1"
+        app:layout_constraintTop_toBottomOf="@id/manage_text1"
         app:tabIndicatorColor="@color/lightGreen"
         app:tabSelectedTextColor="@color/lightGreen"
         app:tabTextColor="@color/description">
