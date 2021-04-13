@@ -6,22 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hellobiz.mission.databinding.ManageItemBinding
-import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.ClientAdapter
-import com.hellobiz.mission.mission4.puttingtogether.page3.model.ManagementResponse
+import com.hellobiz.mission.databinding.GroupItemBinding
+import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupResponse
 
-class ManagementAdapter() : RecyclerView.Adapter<ManagementAdapter.ManagementViewHolder>() {
-    private var listener: ManagementAdapter.ItemClickListener? = null
-    private var mList: ArrayList<ManagementResponse>? = null
+/*
+ 그룹관리 List Adapter
+ */
+class GroupAdapter() : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
+    private var listener: ItemClickListener? = null
+    private var mList: ArrayList<GroupResponse>? = null
     private var context: Context? = null
 
-    constructor(context: Context?, Stores: ArrayList<ManagementResponse>) : this() {
+    constructor(context: Context?, groupData : ArrayList<GroupResponse>) : this() {
         //엑티비티에서 넘어온 Stores를 Adapter의 mList에 대입
-        mList = Stores
+        mList = groupData
         this.context = context
     }
 
-    //position과 check 여부를 알려주는 리스너 콜백을 정의
+    //퍼센트와 그룹명을 알려주는 리스너 콜백을 정의
     interface ItemClickListener{
         fun onItemClick(v: View?, gprPer:Int, gprName:String)
     }
@@ -32,14 +34,14 @@ class ManagementAdapter() : RecyclerView.Adapter<ManagementAdapter.ManagementVie
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ManagementViewHolder {
-        val binding = ManageItemBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
+        val binding = GroupItemBinding.inflate(
             LayoutInflater.from(context), parent, false
         )
-        return ManagementViewHolder(binding)
+        return GroupViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ManagementViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
         holder.bind(mList!![position])
     }
 
@@ -47,10 +49,10 @@ class ManagementAdapter() : RecyclerView.Adapter<ManagementAdapter.ManagementVie
         return mList!!.size
     }
 
-    inner class ManagementViewHolder(val binding: ManageItemBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class GroupViewHolder(val binding: GroupItemBinding) : RecyclerView.ViewHolder(binding.root){
         //서버에서 받아온 값으로 setText
         @SuppressLint("SetTextI18n")
-        fun bind(params : ManagementResponse){
+        fun bind(params : GroupResponse){
             binding.manageId.text = params.gprId.toString()
             binding.manageGrade.text = params.gprName
             binding.managePercent.text = "("+params.gprPer.toString()+"%)"

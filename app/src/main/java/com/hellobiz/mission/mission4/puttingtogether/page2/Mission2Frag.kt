@@ -12,7 +12,7 @@ import com.hellobiz.mission.databinding.FragmentMission2Binding
 import com.hellobiz.mission.mission4.puttingtogether.page2.model.DisList
 
 /*
-전체 매물, 내 차량 매물 Fragment
+거래처별, 품목별 장부 Fragment
  */
 class Mission2Frag : Fragment() {
     private var mBinding: FragmentMission2Binding? = null
@@ -26,7 +26,7 @@ class Mission2Frag : Fragment() {
         mBinding = FragmentMission2Binding.inflate(inflater, container, false)
         putData()
         getRecyclerView()     //기본 recyclerview 초기화
-        getTouchableItem()
+        getTouchableItem()    //거래처 아이템 클릭 시 상세 내역으로 이동 및 정보 전달
 
         return binding.root
     }
@@ -53,7 +53,7 @@ class Mission2Frag : Fragment() {
         })
     }
 
-    //recyclerview를 adapter와 연결 및 세팅
+    //장부 recyclerview를 adapter와 연결 및 세팅
     private fun getRecyclerView() {
         adapter = ListAdapter(requireContext(), listData)
         binding.mainRecyclerview.layoutManager =
@@ -65,6 +65,7 @@ class Mission2Frag : Fragment() {
         binding.mainRecyclerview.adapter = adapter
     }
 
+    //거래처 아이템 클릭 시 상세 내역으로 이동 및 정보 전달
     private fun getTouchableItem(){
             adapter.setOnItemClickListener(object : ListAdapter.ItemClickListener {
                 override fun onItemClick(
@@ -74,7 +75,7 @@ class Mission2Frag : Fragment() {
                     sales: String,
                     profit: String
                 ) {
-                    val intent = Intent(requireContext(),BookActivity::class.java)
+                    val intent = Intent(requireContext(),BookDetailActivity::class.java)
                     intent.putExtra("store",store)
                     intent.putExtra("location",location)
                     intent.putExtra("sales",sales)

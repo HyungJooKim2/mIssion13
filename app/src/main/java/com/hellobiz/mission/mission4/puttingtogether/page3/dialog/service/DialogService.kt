@@ -1,9 +1,9 @@
-package com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.service
+package com.hellobiz.mission.mission4.puttingtogether.page3.dialog.service
 
 import com.hellobiz.mission.error.ErrorUtils
 import com.hellobiz.mission.mission3.mission3retrofit.Mission3Retrofit
-import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.`interface`.Dialog
-import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.model.DialogModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.`interface`.Dialog
+import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.DialogModel
 import com.hellobiz.mission.serviceinterface.Services
 import okhttp3.ResponseBody
 import retrofit2.Call

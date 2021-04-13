@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hellobiz.mission.databinding.ListItemBinding
 import com.hellobiz.mission.mission4.puttingtogether.page2.model.DisList
 
+/*
+거래처별, 품목별 장부 Adapter
+ */
 class ListAdapter() : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     private var listener: ItemClickListener? = null
     private var mList: ArrayList<DisList>? = null
@@ -21,7 +24,7 @@ class ListAdapter() : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
         this.context = context
     }
 
-    //position과 check 여부를 알려주는 리스너 콜백을 정의
+    //가게명, 지역, 전체매출, 실매출 여부를 알려주는 리스너 콜백을 정의
     interface ItemClickListener {
         fun onItemClick(v: View?, store: String, location: String, sales: String, profit: String)
     }
@@ -52,17 +55,17 @@ class ListAdapter() : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        //MainViewResponse 자료형의 데이터를 넣으면 그 데이터로 imageview 또는 textview 출력
+
         @SuppressLint("SetTextI18n")
         fun bind(list: DisList) {
-            binding.text1.text = list.store
-            binding.text2.text = list.sales
-            binding.text3.text = list.location
-            binding.text4.text = list.profit
+            binding.text1.text = list.store    //거래처명
+            binding.text2.text = list.sales    //전체 매출
+            binding.text3.text = list.location //지역
+            binding.text4.text = list.profit   //실 매출
         }
 
         init {
-            // 해당 view에 클릭 리스너를 붙인다
+            // 해당 view에 클릭 리스너를 붙인후, 해당 내용 fragment로 전달
             binding.bind.setOnClickListener { v ->
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION) {

@@ -1,7 +1,7 @@
-package com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.`interface`
+package com.hellobiz.mission.mission4.puttingtogether.page3.dialog.`interface`
 
 import com.hellobiz.mission.error.model.ErrorRespose
-import com.hellobiz.mission.mission4.puttingtogether.page3.Dialog.model.DialogModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.DialogModel
 
 interface Dialog {
     fun dialogSuccess(dialogModel: DialogModel?)

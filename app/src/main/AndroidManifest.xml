@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".mission4.puttingtogether.page3.GroupDetailActivity"></activity>
         <activity android:name=".mission4.puttingtogether.page3.ClientDetailAcitivty" />
-        <activity android:name=".mission4.puttingtogether.page2.BookActivity" />
+        <activity android:name=".mission4.puttingtogether.page2.BookDetailActivity" />
         <activity android:name=".mission3.signup.DistributionSignUpActivity" />
         <activity android:name=".mission4.DistributionMainActivity">
             <intent-filter>

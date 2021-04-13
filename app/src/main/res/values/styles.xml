@@ -17,4 +17,9 @@
         <item name="android:textSize">8sp</item>
     </style>
 
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">#132432</item>
+        <item name="colorControlActivated">#c51234</item>
+        <item name="colorControlHighlight">#3F51B5</item>
+    </style>
 </resources>
