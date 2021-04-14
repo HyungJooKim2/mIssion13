@@ -83,4 +83,6 @@ dependencies {
     //imagepicker 라이브러리
     implementation 'com.github.esafirm.android-image-picker:imagepicker:2.4.5'
 
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
 }

@@ -2,8 +2,10 @@ package com.hellobiz.mission.serviceinterface
 
 import com.hellobiz.mission.mission3.signup.model.ModificationModel
 import com.hellobiz.mission.mission3.signup.model.ProfileUpdateModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.dialog.model.SearchModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.ClientModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.DialogModel
+import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.model.GroupPatchModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupModel
 import com.hellobiz.mission2.mainview.model.MainViewModel
 import okhttp3.RequestBody
@@ -92,5 +94,10 @@ interface Services {
     fun getClientData(@Query("MEM_ID") memId:Int?, @Query("MEM_TYPE") memType:String, @Query("SRS_ID")srsId:Int,@Query("PAGE")page:Int)
             :Call<ClientModel?>
 
+    @PATCH("api/client/price/ModifyPriceGroup")
+    fun patchGroupData(@Query("MEM_ID")patchMemId: Int?, @Query("MEM_TYPE") pathMemType:String, @Query("PAGE")pathPage:Int) : Call<GroupPatchModel>
+
+    @GET("api/client/client/GetClientSearch?")
+    fun getSearchData(@Query("CNT_TYPE")cntType: String?, @Query("KEYWORD") keyWord:String, @Query("PAGE")page:Int,@Query("SRS_ID")srsId:Int) : Call<SearchModel>
 }
 

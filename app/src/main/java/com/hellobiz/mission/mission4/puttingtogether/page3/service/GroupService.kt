@@ -2,7 +2,7 @@ package com.hellobiz.mission.mission4.puttingtogether.page3.service
 
 import com.hellobiz.mission.error.ErrorUtils
 import com.hellobiz.mission.mission3.mission3retrofit.Mission3Retrofit
-import com.hellobiz.mission.mission4.puttingtogether.page3.`interface`.Management
+import com.hellobiz.mission.mission4.puttingtogether.page3.`interface`.GroupInterface
 import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupModel
 import com.hellobiz.mission.serviceinterface.Services
 import okhttp3.ResponseBody
@@ -10,9 +10,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ManagementService(management: Management) {
+class GroupService(groupInterface: GroupInterface) {
 
-    private val mManagement: Management = management
+    private val mGroupInterface: GroupInterface = groupInterface
 
     fun getManagementService(srsId: Int, memId: Int, page: Int) {
         val managementInterface: Services =
@@ -31,15 +31,15 @@ class ManagementService(management: Management) {
                     val groupModel: GroupModel? = response.body()
                     val error: ResponseBody? = response.errorBody()
                     if (groupModel == null) {
-                        if (error != null) mManagement.myGroupError(ErrorUtils.paresError(error))
-                        else mManagement.myGroupFailure(null)
+                        if (error != null) mGroupInterface.myGroupError(ErrorUtils.paresError(error))
+                        else mGroupInterface.myGroupFailure(null)
                         return
                     }
-                    mManagement.myGroupSuccess(groupModel)
+                    mGroupInterface.myGroupSuccess(groupModel)
                 }
 
                 override fun onFailure(call: Call<GroupModel?>, t: Throwable) {
-                    mManagement.myGroupFailure(t)
+                    mGroupInterface.myGroupFailure(t)
                 }
             })
     }

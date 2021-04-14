@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mission4.puttingtogether.page3.ClientDetailAcitivty">
+    tools:context=".mission4.puttingtogether.page3.clientdetail.ClientDetailAcitivty">
+
 
     <ImageButton
         android:id="@+id/btn_back"
@@ -58,7 +59,8 @@
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/client_text2"
-        tools:text="신토불이 오삼불고기" />
+        tools:text="불고기집"
+        />
 
     <TextView
         android:id="@+id/client_location"
@@ -139,6 +141,8 @@
         app:layout_constraintWidth_percent="0.82"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:backgroundTint="#e6e6e6"
         app:layout_constraintTop_toBottomOf="@id/client_text3"
         tools:text="A" />
 
@@ -193,6 +197,5 @@
             android:textSize="12.5sp"
             android:textStyle="normal" />
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

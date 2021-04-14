@@ -1,4 +1,4 @@
-package com.hellobiz.mission.mission4.puttingtogether.page3
+package com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail
 
 import android.R
 import android.os.Bundle

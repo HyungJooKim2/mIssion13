@@ -16,15 +16,17 @@ import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.`interface`.Cl
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.ClientModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.ClientResponse
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.service.ClientService
-import com.hellobiz.mission.mission4.puttingtogether.page3.`interface`.Management
+import com.hellobiz.mission.mission4.puttingtogether.page3.`interface`.GroupInterface
+import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.ClientDetailAcitivty
+import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.GroupDetailActivity
 import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupResponse
-import com.hellobiz.mission.mission4.puttingtogether.page3.service.ManagementService
+import com.hellobiz.mission.mission4.puttingtogether.page3.service.GroupService
 
 /*
 거래처 관리 페이지 Activity
  */
-class Mission3Frag : Fragment(), Management, View.OnClickListener, Client {
+class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
     private var mBinding: FragmentMission3Binding? = null
     private val binding get() = mBinding!!
     private var groupData: ArrayList<GroupResponse> = ArrayList()
@@ -55,7 +57,7 @@ class Mission3Frag : Fragment(), Management, View.OnClickListener, Client {
 
         //그룹관리 서비스 연동
     private fun getGroupService(a: Int, b: Int, c: Int) {
-        val managementService = ManagementService(this)
+        val managementService = GroupService(this)
         managementService.getManagementService(a, b, c)
     }
         //거래처관리 서비스 연동

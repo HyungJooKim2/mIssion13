@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mission4.puttingtogether.page3.GroupDetailActivity">
+    tools:context=".mission4.puttingtogether.page3.groupdetail.GroupDetailActivity">
 
     <ImageButton
         android:id="@+id/btn_back"
