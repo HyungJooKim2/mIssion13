@@ -26,12 +26,15 @@ class SearchDialogFragment() : DialogFragment(),
     private var listener: ItemClickListener? = null
     private var mBinding: SearchDialogBinding? = null
     private val binding get() = mBinding!!
-    private var keyWordText : String = ""
+    private var keyWordText: String = ""
     private var searchData: ArrayList<SearchResponse> = ArrayList()
     private var adapter: SearchAdapter = SearchAdapter()
-    private var getName : String? = null
-    private var getLocation : String? = null
-    private var getTel : String? = null
+    private var getName: String? = null
+    private var getLocation: String? = null
+    private var getTel: String? = null
+    private var getSrsId: Int? = null
+    private var getMemId: Int? = null
+    private var getCntType: String? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -57,7 +60,7 @@ class SearchDialogFragment() : DialogFragment(),
             adapter.notifyDataSetChanged()
             refresh_layout.isRefreshing = false
         }
-
+        binding.searchImage.setOnClickListener(this)
 
         return binding.root
     }
@@ -67,7 +70,7 @@ class SearchDialogFragment() : DialogFragment(),
         binding.editSearch.setOnKeyListener { _, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 keyWordText = binding.editSearch.text.toString()
-                getSearchService("R",keyWordText,1,40)
+                getSearchService("R", keyWordText, 1, 40)
                 hideKeyBoard()
                 true
             } else {
@@ -108,9 +111,10 @@ class SearchDialogFragment() : DialogFragment(),
         val searchService = SearchService(this)
         searchService.getSearchService(a, b, c, d)
     }
+
     //position과 check 여부를 알려주는 리스너 콜백을 정의
     interface ItemClickListener {
-        fun onItemClick(name : String, location : String, tel : String )
+        fun onItemClick(name: String, location: String, tel: String, srsId: Int, cntType: String)
     }
 
     //리스너에 클릭리스너 연결
@@ -121,13 +125,25 @@ class SearchDialogFragment() : DialogFragment(),
     override fun onClick(v: View?) {
         when (v) {
             binding.searchSelect -> {
-               if(listener!=null&&getName!=null&&getLocation!=null&&getTel!=null){
-                   listener!!.onItemClick(getName!!,getLocation!!,getTel!!)
-               }
+                if (listener != null && getName != null && getLocation != null && getTel != null && getSrsId != null && getCntType != null) {
+                    listener!!.onItemClick(
+                        getName!!,
+                        getLocation!!,
+                        getTel!!,
+                        getSrsId!!,
+                        getCntType!!
+                    )
+                }
+                binding.editSearch.setText("")
                 dismiss()
             }
-            binding.dialogUnselect ->{
+            binding.dialogUnselect -> {
                 dismiss()
+            }
+            binding.searchImage -> {
+                keyWordText = binding.editSearch.text.toString()
+                getSearchService("R", keyWordText, 1, 40)
+                hideKeyBoard()
             }
         }
     }
@@ -151,13 +167,25 @@ class SearchDialogFragment() : DialogFragment(),
 
     }
 
-    //몇번째 라디오 버튼이 선택되었는지 및 체크 여부 콜백하여 받아옴
+    //선택된 라디오 버튼에 따라 가지고 있는 정보들을 넘겨줌
     private fun setSearchRadioButtonEnable() {
         adapter.setOnItemClickListener(object : SearchAdapter.ItemClickListener {
-            override fun onItemClick(name: String, location: String, tel: String) {
+
+
+            override fun onItemClick(
+                name: String,
+                location: String,
+                tel: String,
+                memId: Int,
+                srsId: Int,
+                cntType: String
+            ) {
                 getName = name
                 getLocation = location
                 getTel = tel
+                getSrsId = srsId
+                getCntType = cntType
+                getMemId = memId
             }
         })
     }

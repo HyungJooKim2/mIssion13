@@ -9,7 +9,7 @@ data class GroupPatchModel(
 )
 
 data class GroupResponse(
-    @SerializedName("GRP_ID") var gprId: Int,
+    @SerializedName("GRP_ID") var gprId: String,
     @SerializedName("GRP_NAME") var gprName: String,
     @SerializedName("GRP_PER") var gprPer: Int,
 )

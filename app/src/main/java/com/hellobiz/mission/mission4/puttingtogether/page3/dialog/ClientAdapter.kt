@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hellobiz.mission.databinding.ClientItemBinding
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.ClientResponse
+
 /*
 거래처 리스트 Adapter
  */
-class ClientAdapter(): RecyclerView.Adapter<ClientAdapter.ClientViewHolder>(){
+class ClientAdapter() : RecyclerView.Adapter<ClientAdapter.ClientViewHolder>() {
     private var listener: ItemClickListener? = null
-    private var mList : ArrayList<ClientResponse>? = null
-    private var context : Context? = null
+    private var mList: ArrayList<ClientResponse>? = null
+    private var context: Context? = null
 
     constructor(context: Context?, datas: ArrayList<ClientResponse>) : this() {
         //엑티비티에서 넘어온 data를 Adapter의 mList에 대입
@@ -22,8 +23,20 @@ class ClientAdapter(): RecyclerView.Adapter<ClientAdapter.ClientViewHolder>(){
     }
 
     //거래처 주소, 거래처 메모, 거래처 전화번호, 거래처 타입, 거래처 명을 알려주는 리스너 콜백을 정의
-    interface ItemClickListener{
-        fun onItemClick(v: View?,cntAddr:String,cntMemo:String,cntTel:String,cntType:String,cntNm:String)
+    interface ItemClickListener {  //cntType:String,cntPrcGrCd:Int,cntMemo:Strin
+        fun onItemClick(
+            v: View?,
+            cntId: Int,
+            memId: Int,
+            srsId: Int,
+            cntSrsId: Int,
+            cntPrcGrCd: Int,
+            cntNm: String,
+            cntAddr: String,
+            cntTel: String,
+            cntType: String,
+            cntMemo: String
+        )
     }
 
     //리스너에 클릭리스너 연결
@@ -47,20 +60,33 @@ class ClientAdapter(): RecyclerView.Adapter<ClientAdapter.ClientViewHolder>(){
         return mList!!.size
     }
 
-    inner class ClientViewHolder(val binding: ClientItemBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ClientViewHolder(val binding: ClientItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         //서버에서 받아온 값으로 setText
-        fun bind(client : ClientResponse){
+        fun bind(client: ClientResponse) {
             binding.itemClientName.text = client.cntNm
             binding.itemClientLocation.text = client.cntAddr
         }
 
         init {
             // 해당 view에 클릭 리스너를 붙인다
-            binding.bind.setOnClickListener{v->
+            binding.bind.setOnClickListener { v ->
                 val pos = adapterPosition
-                if (pos != RecyclerView.NO_POSITION){
+                if (pos != RecyclerView.NO_POSITION) {
                     if (listener != null) {
-                        listener!!.onItemClick(v,mList!![pos].cntAddr,mList!![pos].cntMemo,mList!![pos].cntTel,mList!![pos].cntType,mList!![pos].cntNm)
+                        listener!!.onItemClick(
+                            v,
+                            mList!![pos].cntId,
+                            mList!![pos].memId,
+                            mList!![pos].srsId,
+                            mList!![pos].cntSrsId,
+                            mList!![pos].cntPrcGrCd,
+                            mList!![pos].cntNm,
+                            mList!![pos].cntAddr,
+                            mList!![pos].cntTel,
+                            mList!![pos].cntType,
+                            mList!![pos].cntMemo
+                        )
                     }
                 }
             }

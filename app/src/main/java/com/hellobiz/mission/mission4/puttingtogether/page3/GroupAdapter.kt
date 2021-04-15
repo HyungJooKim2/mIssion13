@@ -25,7 +25,7 @@ class GroupAdapter() : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
 
     //퍼센트와 그룹명을 알려주는 리스너 콜백을 정의
     interface ItemClickListener{
-        fun onItemClick(v: View?, gprPer:Int, gprName:String)
+        fun onItemClick(v: View?, gprPer:Int, gprName:String, gprId:String)
     }
 
     //리스너에 클릭리스너 연결
@@ -63,7 +63,7 @@ class GroupAdapter() : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION){
                     if (listener != null) {
-                        listener!!.onItemClick(v,mList!![pos].gprPer,mList!![pos].gprName)
+                        listener!!.onItemClick(v,mList!![pos].gprPer,mList!![pos].gprName,mList!![pos].gprId.toString())
                     }
                 }
             }

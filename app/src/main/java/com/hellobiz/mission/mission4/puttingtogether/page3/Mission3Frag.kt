@@ -22,6 +22,7 @@ import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.GroupDeta
 import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupResponse
 import com.hellobiz.mission.mission4.puttingtogether.page3.service.GroupService
+import kotlinx.android.synthetic.main.search_dialog.*
 
 /*
 거래처 관리 페이지 Activity
@@ -34,6 +35,7 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
     private var groupAdapter: GroupAdapter = GroupAdapter()
     private var clientAdapter: ClientAdapter = ClientAdapter()
     private var selectDialog = SelectDialogFragment()
+    private var a : Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,23 +51,40 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
         //tab을 클릭하여 service연결을 바꿔줌
         setTabLayout()
 
+        if(a) {
+            binding.refreshLayout.setOnRefreshListener {
+                getGroupService(40, 37, 1)
+                groupAdapter.notifyDataSetChanged()
+                refresh_layout.isRefreshing = false
+            }
+        }
+       else {
+            binding.refreshLayout.setOnRefreshListener {
+                getClientService(37, "P", 40, 1)
+                clientAdapter.notifyDataSetChanged()
+                refresh_layout.isRefreshing = false
+            }
+        }
+
         //클릭리스너 연동
         binding.manageText1.setOnClickListener(this)
 
         return binding.root
     }
 
-        //그룹관리 서비스 연동
+    //그룹관리 서비스 연동
     private fun getGroupService(a: Int, b: Int, c: Int) {
         val managementService = GroupService(this)
         managementService.getManagementService(a, b, c)
     }
-        //거래처관리 서비스 연동
+
+    //거래처관리 서비스 연동
     private fun getClientService(a: Int, b: String, c: Int, d: Int) {
         val clientService = ClientService(this)
         clientService.getCleintService(a, b, c, d)
     }
-       //그룹관리 recyclerview 기본 세팅
+
+    //그룹관리 recyclerview 기본 세팅
     private fun getGroupRecyclerview() {
         groupAdapter = GroupAdapter(requireContext(), groupData)
         binding.manageRecyclerview.adapter = groupAdapter
@@ -76,7 +95,8 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
                 false
             )
     }
-       //거래처 관리 recyclerview 기본 세팅
+
+    //거래처 관리 recyclerview 기본 세팅
     private fun getClientRecyclerview() {
         clientAdapter = ClientAdapter(requireContext(), clientData)
         binding.manageRecyclerview.adapter = clientAdapter
@@ -87,16 +107,23 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
                 false
             )
     }
-        //클라이언트 recyclerview 리스너 콜백, 클라이언트 상세화면으로 이동 및 정보 전달
+
+    //클라이언트 recyclerview 리스너 콜백, 클라이언트 상세화면으로 이동 및 정보 전달
     private fun getTouchableClientItem() {
         clientAdapter.setOnItemClickListener(object : ClientAdapter.ItemClickListener {
+
             override fun onItemClick(
                 v: View?,
+                cntId: Int,
+                memId: Int,
+                srsId: Int,
+                cntSrsId: Int,
+                cntPrcGrCd: Int,
+                cntNm: String,
                 cntAddr: String,
-                cntMemo: String,
                 cntTel: String,
                 cntType: String,
-                cntNm: String
+                cntMemo: String
             ) {
                 val intent = Intent(requireContext(), ClientDetailAcitivty::class.java)
                 intent.putExtra("cntAddr", cntAddr)
@@ -104,18 +131,25 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
                 intent.putExtra("cntTel", cntTel)
                 intent.putExtra("cntType", cntType)
                 intent.putExtra("cntNm", cntNm)
+                intent.putExtra("cntId",cntId)
+                intent.putExtra("memId",memId)
+                intent.putExtra("srsId",srsId)
+                intent.putExtra("cntSrsId",cntSrsId)
+                intent.putExtra("cntPrcGrCd",cntPrcGrCd)
+
                 startActivity(intent)
             }
         })
     }
 
-       //그룹 recyclerview 리스너 콜백, 그룹 상세화면으로 이동 및 정보 전달
+    //그룹 recyclerview 리스너 콜백, 그룹 상세화면으로 이동 및 정보 전달
     private fun getTouchableGroupItem() {
         groupAdapter.setOnItemClickListener(object : GroupAdapter.ItemClickListener {
-            override fun onItemClick(v: View?, gprPer: Int, gprName: String) {
+            override fun onItemClick(v: View?, gprPer: Int, gprName: String, gprId: String) {
                 val intent = Intent(requireContext(), GroupDetailActivity::class.java)
                 intent.putExtra("gprPer", gprPer)
                 intent.putExtra("gprName", gprName)
+                intent.putExtra("gprId",gprId)
                 startActivity(intent)
             }
 
@@ -128,8 +162,16 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
         binding.tabLayout2.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab!!.position) {
-                    0 -> getClientService(17, "L", 5, 1)
-                    1 -> getGroupService(40, 37, 1)
+                    0 -> {
+                        getClientService(17, "L", 5, 1)
+                        a=false
+
+                    }
+
+                    1 -> {getGroupService(40, 37, 1)
+                        a=true
+
+                    }
                 }
             }
 

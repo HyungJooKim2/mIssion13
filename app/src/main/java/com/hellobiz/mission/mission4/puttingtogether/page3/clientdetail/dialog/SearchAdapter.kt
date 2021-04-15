@@ -25,7 +25,7 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     //position과 check 여부를 알려주는 리스너 콜백을 정의
     interface ItemClickListener {
-        fun onItemClick(name : String, location : String, tel : String )
+        fun onItemClick(name : String, location : String, tel : String ,memId:Int,srsId:Int,cntType:String)
     }
 
     //리스너에 클릭리스너 연결
@@ -66,7 +66,7 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION && listener != null) {
                     if (listener != null) {
-                        listener!!.onItemClick(mList!![pos].srsNm, mList!![pos].srsAddr, mList!![pos].srsTel)
+                        listener!!.onItemClick(mList!![pos].srsNm, mList!![pos].srsAddr, mList!![pos].srsTel,mList!![pos].memId,mList!![pos].srsId,mList!![pos].cntType)
                         if (pos == mSelectedItemCount) {
                             binding.searchRadioButton.isChecked = false
                             mSelectedItemCount = -1
