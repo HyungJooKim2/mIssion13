@@ -6,10 +6,9 @@ import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.dialog.m
 import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.model.ClientPatchBody
 import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.model.ClientPatchModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.ClientModel
-import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.ClientResponse
 import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.DialogModel
 import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.model.GroupPatchModel
-import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.model.GroupResponse
+import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.model.GroupPatchResponse
 import com.hellobiz.mission.mission4.puttingtogether.page3.model.GroupModel
 import com.hellobiz.mission2.mainview.model.MainViewModel
 import okhttp3.RequestBody
@@ -99,7 +98,7 @@ interface Services {
             :Call<ClientModel?>
 
     @PATCH("api/client/price/ModifyPriceGroup")
-    fun patchGroupData(@Body parmas : GroupResponse) : Call<GroupPatchModel>
+    fun patchGroupData(@Body parmas : GroupPatchResponse) : Call<GroupPatchModel>
 
     @GET("api/client/client/GetClientSearch?")
     fun getSearchData(@Query("CNT_TYPE")cntType: String?, @Query("KEYWORD") keyWord:String, @Query("PAGE")page:Int,@Query("SRS_ID")srsId:Int) : Call<SearchModel>

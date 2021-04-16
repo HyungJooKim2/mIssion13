@@ -5,10 +5,6 @@ import com.hellobiz.mission.mission3.mission3retrofit.Mission3Retrofit
 import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.`interface`.ClientPatch
 import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.model.ClientPatchBody
 import com.hellobiz.mission.mission4.puttingtogether.page3.clientdetail.model.ClientPatchModel
-import com.hellobiz.mission.mission4.puttingtogether.page3.dialog.model.ClientResponse
-import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.`interface`.GroupPatch
-import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.model.GroupPatchModel
-import com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail.model.GroupResponse
 import com.hellobiz.mission.serviceinterface.Services
 import okhttp3.ResponseBody
 import retrofit2.Call

@@ -32,8 +32,9 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
     private var getName: String? = null
     private var getLocation: String? = null
     private var getTel: String? = null
-    private var selItem:Any? = null
+    private var selItem:Int? = null
     private var getSrsId : Int? = null
+    private var groupResponse : ArrayList<GroupResponse> = ArrayList()
     private var getMemId : Int? = null
     private var getCntType : String? = null
     private var cntSrsId:Int? = null
@@ -83,7 +84,7 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
                 id: Long
             ) {
                 //단가그룹 저장
-                selItem = binding.clientType.selectedItem
+                selItem = groupResponse[position].gprId
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -99,6 +100,7 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
     override fun myGroupSuccess(groupModel: GroupModel?) {
         when (groupModel?.code) {
             200 -> {
+                groupResponse.addAll(groupModel.data)
                 for (i in 0 until groupModel.data.size) {
                     items3.add(groupModel.data[i].gprName)
                 }
@@ -137,7 +139,7 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
             binding.clientDetailSave -> {
                 //저장 입력시 patch수행
                 clientPatchBody =
-                    ClientPatchBody(22, 37, "P", 40, cntSrsId!!, getCntType!!, 22, binding.clientMemo.text.toString())
+                    ClientPatchBody(22, 37, "P", 40, cntSrsId!!, getCntType!!, selItem!!    , binding.clientMemo.text.toString())
                 setClientPatchService(clientPatchBody)
             }
         }
