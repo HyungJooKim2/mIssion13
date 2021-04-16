@@ -42,6 +42,7 @@
         android:ellipsize="end"
         android:lineSpacingExtra="6.1sp"
         android:maxLines="2"
+        android:maxLength="70"
         android:textSize="13.9sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,7 @@
         app:met_floatingLabel="highlight"
         app:met_floatingLabelText="그룹명"
         app:met_primaryColor="@color/lightGreen"
-        tools:text="Baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+        tools:text="BaaaaaaaaaaAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaa" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/group_percent"
@@ -63,10 +64,12 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="33dp"
         android:ellipsize="end"
+        android:maxLength="9"
         android:maxLines="1"
         android:textColor="#000000"
         android:textSize="13.9sp"
         android:textStyle="normal"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_name"
@@ -75,9 +78,24 @@
         app:met_baseColor="#000000"
         app:met_floatingLabel="highlight"
         app:met_floatingLabelText="가격 백분율"
-        android:drawableRight="@drawable/ic_search"
-        app:met_primaryColor="#c12345"
-        tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+        app:met_primaryColor="@color/lightGreen"
+        tools:text="51123132131231131234513513112312412321512321413213" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/group_percent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:paddingEnd="48dp"
+        android:text="%"
+        android:textColor="#000000"
+        android:textSize="13.9sp"
+        android:textStyle="normal" />
+
+
+
 
 
     <androidx.cardview.widget.CardView

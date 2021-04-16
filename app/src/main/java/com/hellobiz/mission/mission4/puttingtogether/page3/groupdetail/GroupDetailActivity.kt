@@ -1,7 +1,11 @@
 package com.hellobiz.mission.mission4.puttingtogether.page3.groupdetail
 
+import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.hellobiz.mission.databinding.ActivityGroupDetailBinding
@@ -24,9 +28,17 @@ class GroupDetailActivity : AppCompatActivity(), GroupPatch,View.OnClickListener
         mBinding = ActivityGroupDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding ()
+
+    }
+
+    private fun binding (){
+        val listener = EnterListener()
         binding.groupPercent.setText(intent.getIntExtra("gprPer", 0).toString())
         binding.groupName.setText(intent.getStringExtra("gprName"))
         binding.groupDetailSave.setOnClickListener(this)
+        binding.groupName.setOnEditorActionListener(listener)
+        binding.groupPercent.setOnEditorActionListener(listener)
     }
 
     override fun groupPatchSuccess(groupPatchModel: GroupPatchModel?) {
@@ -60,4 +72,20 @@ class GroupDetailActivity : AppCompatActivity(), GroupPatch,View.OnClickListener
                setPatchService(groupPatchResponse) }
             }
         }
+
+    inner class EnterListener : TextView.OnEditorActionListener {
+        override fun onEditorAction(p0: TextView?, p1: Int, p2: KeyEvent?): Boolean {
+            hideKeyBoard()
+            return true
+        }
+    }
+    //키보드를 내려주는 메소드
+    private fun hideKeyBoard() {
+        val imm1 = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm1.hideSoftInputFromWindow(binding.groupName.windowToken, 0)
+
+        val imm2 = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm2.hideSoftInputFromWindow(binding.groupPercent.windowToken, 0)
+    }
+
     }

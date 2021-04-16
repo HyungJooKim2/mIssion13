@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.tabs.TabLayout
 import com.hellobiz.mission.databinding.FragmentMission3Binding
 import com.hellobiz.mission.error.model.ErrorRespose
@@ -27,7 +28,8 @@ import kotlinx.android.synthetic.main.search_dialog.*
 /*
 거래처 관리 페이지 Activity
  */
-class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
+class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client,
+    SwipeRefreshLayout.OnRefreshListener {
     private var mBinding: FragmentMission3Binding? = null
     private val binding get() = mBinding!!
     private var groupData: ArrayList<GroupResponse> = ArrayList()
@@ -51,20 +53,7 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
         //tab을 클릭하여 service연결을 바꿔줌
         setTabLayout()
 
-        if(a) {
-            binding.refreshLayout.setOnRefreshListener {
-                getGroupService(40, 37, 1)
-                groupAdapter.notifyDataSetChanged()
-                refresh_layout.isRefreshing = false
-            }
-        }
-       else {
-            binding.refreshLayout.setOnRefreshListener {
-                getClientService(37, "P", 40, 1)
-                clientAdapter.notifyDataSetChanged()
-                refresh_layout.isRefreshing = false
-            }
-        }
+        binding.refreshLayout.setOnRefreshListener(this)
 
         //클릭리스너 연동
         binding.manageText1.setOnClickListener(this)
@@ -73,15 +62,15 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
     }
 
     //그룹관리 서비스 연동
-    private fun getGroupService(a: Int, b: Int, c: Int) {
+    private fun getGroupService(srsId: Int, memId: Int, page: Int) {
         val managementService = GroupService(this)
-        managementService.getManagementService(a, b, c)
+        managementService.getManagementService(srsId, memId, page)
     }
 
     //거래처관리 서비스 연동
-    private fun getClientService(a: Int, b: String, c: Int, d: Int) {
+    private fun getClientService(memId: Int, memType: String, srsId: Int, page: Int) {
         val clientService = ClientService(this)
-        clientService.getCleintService(a, b, c, d)
+        clientService.getCleintService(memId, memType, srsId, page)
     }
 
     //그룹관리 recyclerview 기본 세팅
@@ -131,12 +120,11 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
                 intent.putExtra("cntTel", cntTel)
                 intent.putExtra("cntType", cntType)
                 intent.putExtra("cntNm", cntNm)
-                intent.putExtra("cntId",cntId)
-                intent.putExtra("memId",memId)
-                intent.putExtra("srsId",srsId)
-                intent.putExtra("cntSrsId",cntSrsId)
-                intent.putExtra("cntPrcGrCd",cntPrcGrCd)
-
+                intent.putExtra("cntId", cntId)
+                intent.putExtra("memId", memId)
+                intent.putExtra("srsId", srsId)
+                intent.putExtra("cntSrsId", cntSrsId)
+                intent.putExtra("cntPrcGrCd", cntPrcGrCd)
                 startActivity(intent)
             }
         })
@@ -149,7 +137,7 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
                 val intent = Intent(requireContext(), GroupDetailActivity::class.java)
                 intent.putExtra("gprPer", gprPer)
                 intent.putExtra("gprName", gprName)
-                intent.putExtra("gprId",gprId)
+                intent.putExtra("gprId", gprId)
                 startActivity(intent)
             }
 
@@ -163,13 +151,15 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab!!.position) {
                     0 -> {
-                        getClientService(17, "L", 5, 1)
+                        getClientService(37, "P", 40, 1)
                         a=false
 
                     }
 
-                    1 -> {getGroupService(40, 37, 1)
+                    1 -> {
+                        getGroupService(40, 37, 1)
                         a=true
+
 
                     }
                 }
@@ -214,12 +204,6 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
             //유통회사 textview 클릭시 가게선택 dialog 띄움
             binding.manageText1 -> {
                 fragmentManager?.let { selectDialog.show(it, "dialogfragment") }
-//                selectDialog.setOnItemClickListener(object :
-//                    SelectDialogFragment.DialClickListener {
-//                    override fun DialMemberClick(check: Boolean) {
-//
-//                    }
-//                })
             }
         }
     }
@@ -246,5 +230,18 @@ class Mission3Frag : Fragment(), GroupInterface, View.OnClickListener, Client {
 
     override fun clientFailure(message: Throwable?) {
 
+    }
+
+    override fun onRefresh() {
+        if (a) {
+            getGroupService(40, 37, 1)
+            groupAdapter.notifyDataSetChanged()
+            refresh_layout.isRefreshing = false
+
+        } else {
+            getClientService(37, "P", 40, 1)
+            clientAdapter.notifyDataSetChanged()
+            refresh_layout.isRefreshing = false
+        }
     }
 }

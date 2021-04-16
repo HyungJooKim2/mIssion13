@@ -107,9 +107,9 @@ class SearchDialogFragment() : DialogFragment(),
     }
 
     //거래처 찾기 서버 연결
-    private fun getSearchService(a: String, b: String, c: Int, d: Int) {
+    private fun getSearchService(cntType: String, keyWord: String, page: Int, srsId: Int) {
         val searchService = SearchService(this)
-        searchService.getSearchService(a, b, c, d)
+        searchService.getSearchService(cntType, keyWord, page, srsId)
     }
 
     //position과 check 여부를 알려주는 리스너 콜백을 정의
@@ -138,6 +138,7 @@ class SearchDialogFragment() : DialogFragment(),
                 dismiss()
             }
             binding.dialogUnselect -> {
+                binding.editSearch.setText("")
                 dismiss()
             }
             binding.searchImage -> {
