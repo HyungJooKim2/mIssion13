@@ -25,9 +25,10 @@ import java.lang.Exception
  */
 class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickListener,
     ClientPatch {
+
     private var mBinding: ActivityClientDetailAcitivtyBinding? = null
     private val binding get() = mBinding!!
-    private lateinit var spinnerCustomAdpater: SpinnerCustomAdapter
+    private var spinnerCustomAdpater: SpinnerCustomAdapter = SpinnerCustomAdapter()
     private val searchDialog: SearchDialogFragment = SearchDialogFragment()
     private var getName: String? = null         //검색으로 부터 가져온 가게명
     private var getLocation: String? = null     //검색으로 부터 가져온 가게 위치
@@ -39,13 +40,13 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
     private var cntPrcGrCd: Int? = null         //선택한 업체의 단가 그룹
     private var pos = 0
     private lateinit var clientPatchBody: ClientPatchBody
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityClientDetailAcitivtyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         getGroupService(40, 37, 1)
-
 
         getSrsId = intent.getIntExtra("cntSrsId", 0)  //선택한 업체의 회원 가게 아이디
         val cntAddr = intent.getStringExtra("cntAddr")      //선택한 업체 위치
@@ -67,7 +68,6 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
         getSrsId = intent.getIntExtra("srsId", 0)
         cntPrcGrCd = intent.getIntExtra("cntPrcGrCd", 0)
         */
-
 
         getFromSearching()      //검색 후 선택한 가게의 정보를 가져옴
 
@@ -92,7 +92,9 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
 
             }
         }
-    }
+
+        }
+
 
     /**
     어뎁터 전달을 외부에서 실행할 경우 오류 발생하여 서버 연동할때 연결
@@ -103,20 +105,16 @@ class ClientDetailAcitivty : AppCompatActivity(), GroupInterface, View.OnClickLi
             200 -> {
                 try {
                     groupResponse.addAll(groupModel.data)
-
                     spinnerCustomAdpater = SpinnerCustomAdapter(this, groupResponse)
                     binding.spStatus.adapter = spinnerCustomAdpater
 
-
-                    groupModel.data.forEachIndexed { index, groupresponse2 ->
-                        if (cntPrcGrCd==groupresponse2.gprId) {
+                    groupResponse.forEachIndexed { index, groupresponse2 ->
+                        if (cntPrcGrCd == groupresponse2.gprId) {
                             pos = index
                             binding.spStatus.setSelection(pos)
-                        } else {
-                            binding.spStatus.setSelection(0)
                         }
                     }
-                    spinnerCustomAdpater.notifyDataSetChanged()
+
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
